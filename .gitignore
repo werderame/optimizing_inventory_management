@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code settings
+.vscode/
+
+# Virtual environments
+env/
+venv/
+.pulpenv/
+*.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# SQLite DBs and model output
+*.sqlite3
+*.db
+*.log
+
+# CSV and data outputs
+data/model_output/
+data/processed/
+data/raw/
+viz/
+
+# Test or temporary files
+*test*.csv
+*tests*.csv
+*.tmp
+*.bak
+analysis*
+*.txt
+*checklist*
+refactorcodes*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Notebook metadata
+*.nbconvert.ipynb

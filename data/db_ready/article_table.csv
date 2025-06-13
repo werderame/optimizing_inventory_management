@@ -1,0 +1,497 @@
+art_id,art_code,art_name,art_category,shelf_life,unit_cost
+0,T613412,"Hähnchenbrustfilet in Lake 250g, 2 Stück - QS",Proteins,,1.722
+1,T613412,"Hähnchenbrustfilet in Lake 250g, 2 Stück - QS",Proteins,7.0,1.722
+2,T613412,"Hähnchenbrustfilet in Lake 250g, 2 Stück - QS",Proteins,10.0,1.722
+3,Y817035,Fettuccine 270g - (V),Supermarket,,0.3136
+4,Y817035,Fettuccine 270g - (V),Supermarket,365.0,0.3136
+5,C00904595,Tomaten Sugo 300g - (V),Processed&more,,0.83
+6,C00904595,Tomaten Sugo 300g - (V),Processed&more,270.0,0.83
+7,S60743,"Gemüsezwiebel, gelb 100g",Fruits&Vegetables,,0.052
+8,S60743,"Gemüsezwiebel, gelb 100g",Fruits&Vegetables,8.0,0.052
+9,S61643,Knoblauchzehe 4-5g,Fruits&Vegetables,,0.0207
+10,S61643,Knoblauchzehe 4-5g,Fruits&Vegetables,11.0,0.0207
+11,S67943,Petersilie glatt /Dill 10g,Fruits&Vegetables,,0.2284
+12,S67943,Petersilie glatt /Dill 10g,Fruits&Vegetables,8.0,0.2284
+13,Y00502132,"Hartkäse ital. Art, gerieben 20g_VEGGIE",Dairy,,0.2124
+14,Y00502132,"Hartkäse ital. Art, gerieben 20g_VEGGIE",Dairy,90.0,0.2124
+15,Y00502132,"Hartkäse ital. Art, gerieben 20g_VEGGIE",Dairy,60.0,0.2124
+16,Cb1045,Semmelbrösel 25g,Processed&more,,0.1631
+17,Cb1045,Semmelbrösel 25g,Processed&more,365.0,0.1631
+18,T606632,"Schweinelachssteak 250g, 2 Stück - QS",Proteins,,1.5912
+19,T606632,"Schweinelachssteak 250g, 2 Stück - QS",Proteins,10.0,1.5912
+20,Y001163343,"Eierspätzle, frisch (4%) 400g",Supermarket,,0.81
+21,Y001163343,"Eierspätzle, frisch (4%) 400g",Supermarket,21.0,0.81
+22,S16073,Salatmix 75g,Fruits&Vegetables,,0.659
+23,S16073,Salatmix 75g,Fruits&Vegetables,8.0,0.659
+24,C111324165,"Veganes Frucht Balsamico Dressing, 35g",Processed&more,,0.39
+25,S68363,Petersilie glatt/Schnittlauch 10g,Fruits&Vegetables,,0.2454
+26,S68363,Petersilie glatt/Schnittlauch 10g,Fruits&Vegetables,8.0,0.2454
+27,Y844142,Kräuterbutter 20g,Dairy,,0.3135
+28,Y844142,Kräuterbutter 20g,Dairy,35.0,0.3135
+29,YP63353,"Saure Sahne Bio, 100g",Dairy,,0.2841
+30,YP63353,"Saure Sahne Bio, 100g",Dairy,14.0,0.2841
+31,C00905205,"Opti Paprika, 4g",Processed&more,,0.066
+32,C00905205,"Opti Paprika, 4g",Processed&more,730.0,0.066
+33,Ya0215,"Bulgur 150g, gelb - (V)",Supermarket,,0.2486
+34,Ya0215,"Bulgur 150g, gelb - (V)",Supermarket,360.0,0.2486
+35,C00905792,Buttermilch-Zitronen Dressing 50ml,Processed&more,,0.168
+36,C00905792,Buttermilch-Zitronen Dressing 50ml,Processed&more,44.0,0.168
+37,C00905792,Buttermilch-Zitronen Dressing 50ml,Processed&more,270.0,0.168
+38,C00904925,"Opti Cajun, 4g",Processed&more,,0.0456
+39,C00904925,"Opti Cajun, 4g",Processed&more,730.0,0.0456
+40,S61983,"Paprika, grün 180g",Fruits&Vegetables,,0.47
+41,S61983,"Paprika, grün 180g",Fruits&Vegetables,8.0,0.47
+42,R00502545,"Tortilla Chips, Mais, 150g - (V)",Supermarket,,0.54
+43,R00502545,"Tortilla Chips, Mais, 150g - (V)",Supermarket,120.0,0.54
+44,S61073,"Karotte, ohne Strunk, orange 100g",Fruits&Vegetables,,0.074
+45,S61073,"Karotte, ohne Strunk, orange 100g",Fruits&Vegetables,8.0,0.074
+46,C00502715,Hühnerbrühe 4g,Processed&more,,0.049
+47,C00502715,Hühnerbrühe 4g,Processed&more,730.0,0.049
+48,Ya0125,Basmatireis 150g - (V),Supermarket,,0.3073
+49,Ya0125,Basmatireis 150g - (V),Supermarket,360.0,0.3073
+50,SP2973,Portobello Pilze (3er Pack) 225g,Fruits&Vegetables,,0.966
+51,SP2973,Portobello Pilze (3er Pack) 225g,Fruits&Vegetables,8.0,0.966
+52,S60313,"Champignons, braun 200g",Fruits&Vegetables,,0.84
+53,S60313,"Champignons, braun 200g",Fruits&Vegetables,8.0,0.84
+54,SP2903,Babyspinat 150g,Fruits&Vegetables,,0.748
+55,SP2903,Babyspinat 150g,Fruits&Vegetables,8.0,0.748
+56,Y603175,Kochsahne 15% 150g,Dairy,,0.3658
+57,Y603175,Kochsahne 15% 150g,Dairy,25.0,0.3658
+58,Cb11815,Sojasauce 25ml - (V),Processed&more,,0.093
+59,Cb11815,Sojasauce 25ml - (V),Processed&more,270.0,0.093
+60,C00115735,Gemüsebrühe 4g,Processed&more,,0.0341
+61,C00115735,Gemüsebrühe 4g,Processed&more,720.0,0.0341
+62,S61153,"Kartoffel, Drillinge 400g",Fruits&Vegetables,,0.226
+63,T11503512,"Seelachs 250g, 2 Stück",Proteins,,2.15
+64,T11503512,"Seelachs 250g, 2 Stück",Proteins,7.0,2.15
+65,S111278393,Salatherz Romana 120g,Fruits&Vegetables,,0.523
+66,S111278393,Salatherz Romana 120g,Fruits&Vegetables,8.0,0.523
+67,SP73293,Mini-Gurke 150g,Fruits&Vegetables,,0.35
+68,SP73293,Mini-Gurke 150g,Fruits&Vegetables,8.0,0.35
+69,S64333,Zitrone 80-90g,Fruits&Vegetables,,0.135
+70,S64333,Zitrone 80-90g,Fruits&Vegetables,8.0,0.135
+71,S66443,Dill/Schnittlauch 10g,Fruits&Vegetables,8.0,0.2764
+72,YP62643,"Naturjoghurt mild, mind. 3,5% Fett Bio, 75g",Dairy,,0.2145
+73,YP62643,"Naturjoghurt mild, mind. 3,5% Fett Bio, 75g",Dairy,21.0,0.2145
+74,YP62643,"Naturjoghurt mild, mind. 3,5% Fett Bio, 75g",Dairy,37.0,0.2145
+75,C001341125,"Opti Umami, 4g ",Processed&more,,0.0743
+76,C001341125,"Opti Umami, 4g ",Processed&more,425.0,0.0743
+77,Ca0645,"Senf, mittelscharf 10ml - (V)",Processed&more,,0.04
+78,Ca0645,"Senf, mittelscharf 10ml - (V)",Processed&more,90.0,0.04
+79,S61243,"Kartoffeln, vorwiegend festkochend 600g",Fruits&Vegetables,,0.297
+80,S61243,"Kartoffeln, vorwiegend festkochend 600g",Fruits&Vegetables,8.0,0.297
+81,S63593,"Apfel (M-Größe), Sorte mild 140g",Fruits&Vegetables,,0.195
+82,S63593,"Apfel (M-Größe), Sorte mild 140g",Fruits&Vegetables,8.0,0.195
+83,S111326115,"Gemüsezwiebel, rot 70g",Fruits&Vegetables,,0.0441
+84,S111326115,"Gemüsezwiebel, rot 70g",Fruits&Vegetables,8.0,0.0441
+85,Y001196373,Frischecreme 200g,Dairy,,0.831
+86,C00905195,"Opti Paprika, 2g",Processed&more,,0.055
+87,C00905195,"Opti Paprika, 2g",Processed&more,730.0,0.055
+88,R001156945,"Vegane Brioche Burger Buns, 2er 160g - (V)",Supermarket,,0.966
+89,R001156945,"Vegane Brioche Burger Buns, 2er 160g - (V)",Supermarket,45.0,0.966
+90,S61223,"Kartoffeln, vorwiegend festkochend 400g",Fruits&Vegetables,,0.2158
+91,S61223,"Kartoffeln, vorwiegend festkochend 400g",Fruits&Vegetables,8.0,0.2158
+92,S64053,Mango 300g,Fruits&Vegetables,,0.71
+93,S64053,Mango 300g,Fruits&Vegetables,8.0,0.71
+94,S62993,Standardtomate 100g,Fruits&Vegetables,,0.16
+95,S62993,Standardtomate 100g,Fruits&Vegetables,8.0,0.16
+96,S62763,Schalotte 50g,Fruits&Vegetables,8.0,0.077
+97,C001158915,Gehackter Knoblauch & Ingwer in Öl 30g - (V),Processed&more,,0.46
+98,C001158915,Gehackter Knoblauch & Ingwer in Öl 30g - (V),Processed&more,365.0,0.46
+99,C001155245,Sriracha 16ml -(V),Processed&more,,0.1
+100,C001155245,Sriracha 16ml -(V),Processed&more,180.0,0.1
+101,C00905655,Vegane Mayonnaise 25g,Processed&more,,0.22
+102,C00905655,Vegane Mayonnaise 25g,Processed&more,120.0,0.22
+103,C00117915,"Madras Curry, Pulver 4g",Processed&more,730.0,0.15
+104,T613432,"Hähnchengeschnetzeltes in Lake, 250g  - QS",Proteins,,1.7105
+105,T613432,"Hähnchengeschnetzeltes in Lake, 250g  - QS",Proteins,7.0,1.7105
+106,Y00500732,"Frische Linguini, 250g - (V)",Supermarket,,0.74
+107,Y00500732,"Frische Linguini, 250g - (V)",Supermarket,21.0,0.74
+108,S11501543,Porree 200g,Fruits&Vegetables,,0.39
+109,S11501543,Porree 200g,Fruits&Vegetables,8.0,0.39
+110,Ca7575,Gehackte Tomaten in Tomatensaft (Polpa) 390g - (V),Processed&more,,0.46
+111,Ca7575,Gehackte Tomaten in Tomatensaft (Polpa) 390g - (V),Processed&more,270.0,0.46
+112,C00130175,"Kapern, eingelegt, 35g - (V)",Processed&more,,0.35
+113,C00130175,"Kapern, eingelegt, 35g - (V)",Processed&more,540.0,0.35
+114,C00905135,"Opti Buon Appetito, 4g",Processed&more,,0.085
+115,C00905135,"Opti Buon Appetito, 4g",Processed&more,720.0,0.085
+116,T110034472,Kabeljau ohne Haut 240g,Proteins,,2.42
+117,T110034472,Kabeljau ohne Haut 240g,Proteins,7.0,2.42
+118,C00905455,Butterbohnen 380g - (V),Processed&more,,0.49
+119,S16083,Salatmix 100g,Fruits&Vegetables,,0.773
+120,S16083,Salatmix 100g,Fruits&Vegetables,8.0,0.773
+121,YP62653,"Naturjoghurt mild, mind. 3,5% Fett Bio, 150g",Dairy,,0.3284
+122,YP62653,"Naturjoghurt mild, mind. 3,5% Fett Bio, 150g",Dairy,37.0,0.3284
+123,YP62653,"Naturjoghurt mild, mind. 3,5% Fett Bio, 150g",Dairy,21.0,0.3284
+124,Cb32355,"Mayonnaise, 25g",Processed&more,,0.1
+125,Cb32355,"Mayonnaise, 25g",Processed&more,365.0,0.1
+126,Ya1412,"Hartkäse ital. Art, gerieben 40g_VEGGIE",Dairy,,0.383
+127,Ya1412,"Hartkäse ital. Art, gerieben 40g_VEGGIE",Dairy,90.0,0.383
+128,Ya1412,"Hartkäse ital. Art, gerieben 40g_VEGGIE",Dairy,60.0,0.383
+129,C00503405,Worcester Sauce 8ml - (V),Processed&more,,0.099
+130,C00503405,Worcester Sauce 8ml - (V),Processed&more,90.0,0.099
+131,C00905085,"Opti Smoky Paprika, 3g",Processed&more,,0.046
+132,C00905085,"Opti Smoky Paprika, 3g",Processed&more,730.0,0.046
+133,T111354362,King Prawns / Garnelen ohne Schale (51/60s) 150g,Proteins,,1.56
+134,T111354362,King Prawns / Garnelen ohne Schale (51/60s) 150g,Proteins,9.0,1.56
+135,N11905042,400gr Kartoffelwürfel,Processed&more,,2.1
+136,C00905435,Gelbe Currypaste 25g - (V),Processed&more,,0.225
+137,C00905435,Gelbe Currypaste 25g - (V),Processed&more,270.0,0.225
+138,C00905065,"Opti Aloha, 4g",Processed&more,,0.054
+139,S60283,Buschbohnen 200g,Fruits&Vegetables,,0.7627
+140,S60283,Buschbohnen 200g,Fruits&Vegetables,8.0,0.7627
+141,C00114985,Maisstärke 4g,Processed&more,,0.0732
+142,C00114985,Maisstärke 4g,Processed&more,730.0,0.0732
+143,C807065,"Opti Grünzeug Bio, 4g",Processed&more,,0.14
+144,C807065,"Opti Grünzeug Bio, 4g",Processed&more,550.0,0.14
+145,S63223,"Zucchini, grün 220g",Fruits&Vegetables,,0.46
+146,S63223,"Zucchini, grün 220g",Fruits&Vegetables,8.0,0.46
+147,Cb0845,"Sonnenblumenkerne, roh 20g",Processed&more,,0.1161
+148,Cb0845,"Sonnenblumenkerne, roh 20g",Processed&more,100.0,0.1161
+149,Cb32305,"Aioli, 20g",Processed&more,,0.0927
+150,S60683,Frühlingszwiebel - 1 Bund 120g,Fruits&Vegetables,,0.39
+151,S60683,Frühlingszwiebel - 1 Bund 120g,Fruits&Vegetables,8.0,0.39
+152,S60423,"Chilischote, rot 15g",Fruits&Vegetables,,0.1
+153,S60423,"Chilischote, rot 15g",Fruits&Vegetables,8.0,0.1
+154,S60223,Blumenkohl 500g,Fruits&Vegetables,8.0,1.4652
+155,S16063,Salatmix 50g,Fruits&Vegetables,,0.525
+156,S16063,Salatmix 50g,Fruits&Vegetables,8.0,0.525
+157,Cb32345,"Mayonnaise, 50g",Processed&more,,0.18
+158,Cb32345,"Mayonnaise, 50g",Processed&more,365.0,0.18
+159,C00905215,"Opti Paprika, 6g",Processed&more,,0.0778
+160,C00905215,"Opti Paprika, 6g",Processed&more,720.0,0.0778
+161,Cb0995,Pankomehl 50g,Processed&more,,0.1705
+162,Cb0995,Pankomehl 50g,Processed&more,180.0,0.1705
+163,YP62663,"Naturjoghurt mild, mind. 3,5% Fett Bio, 100g",Dairy,,0.2485
+164,YP62663,"Naturjoghurt mild, mind. 3,5% Fett Bio, 100g",Dairy,37.0,0.2485
+165,YP62663,"Naturjoghurt mild, mind. 3,5% Fett Bio, 100g",Dairy,21.0,0.2485
+166,T111329272,"Bio Rinderhackfleischzubereitung, frisch 200g",Proteins,,1.7426
+167,T111329272,"Bio Rinderhackfleischzubereitung, frisch 200g",Proteins,11.0,1.7426
+168,Ca08685,Senfsoße mit Frühlingszwiebeln 50g,Processed&more,,0.34
+169,Ca08685,Senfsoße mit Frühlingszwiebeln 50g,Processed&more,270.0,0.34
+170,S63063,Plum tomato / Roma Tomato (75g+),Fruits&Vegetables,,0.19
+171,S63063,Plum tomato / Roma Tomato (75g+),Fruits&Vegetables,8.0,0.19
+172,Ca1505,Wildpreiselbeeren Marmelade 25g - (V),Processed&more,,0.127
+173,Ca1505,Wildpreiselbeeren Marmelade 25g - (V),Processed&more,150.0,0.127
+174,Cb38985,Pankomehl 25g,Processed&more,,0.1308
+175,Cb38985,Pankomehl 25g,Processed&more,270.0,0.1308
+176,S63033,Süßkartoffel 300g,Fruits&Vegetables,8.0,0.37
+177,S69123,Gurke 300g,Fruits&Vegetables,,0.52
+178,S69123,Gurke 300g,Fruits&Vegetables,8.0,0.52
+179,S64043,Limette 75g,Fruits&Vegetables,,0.145
+180,S64043,Limette 75g,Fruits&Vegetables,8.0,0.145
+181,C001329383,"Ingwerpaste, 10g",Processed&more,,0.13
+182,C001329383,"Ingwerpaste, 10g",Processed&more,90.0,0.13
+183,C001329383,"Ingwerpaste, 10g",Processed&more,270.0,0.13
+184,C00905605,Teriyaki Sauce 50ml - (V),Processed&more,,0.271
+185,C00905605,Teriyaki Sauce 50ml - (V),Processed&more,270.0,0.271
+186,Cb54035,"Milder Chili-Mix, 4g",Processed&more,,0.0637
+187,Cb54035,"Milder Chili-Mix, 4g",Processed&more,730.0,0.0637
+188,Cb0965,Weizenmehl 50g,Processed&more,,0.237
+189,Cb0965,Weizenmehl 50g,Processed&more,182.0,0.237
+190,Cb1305,Puderzucker 50g,Processed&more,,0.32
+191,Yb55385,"H-Milch 3,5%, 200g - 433035",Dairy,,0.26
+192,Yb55385,"H-Milch 3,5%, 200g - 433035",Dairy,150.0,0.26
+193,C832995,"Schokolade Feine Bitter 60%, Bio, 100g - (V)",Processed&more,,0.99
+194,C832995,"Schokolade Feine Bitter 60%, Bio, 100g - (V)",Processed&more,710.0,0.99
+195,Cb1115,"Aprikosen, natur, getrocknet, entsteint 20g",Processed&more,,0.2809
+196,C001304165,Sultaninen 20g,Processed&more,,0.14
+197,Cb1205,Sultaninen 20g - (V),Processed&more,,0.1543
+198,C00116505,Kokos Flocken 6g,Processed&more,,0.17
+199,T11905022,"Rinderhüftsteak, flüssig gewürzt, 250g, 2 Stück - QS",Proteins,,2.842
+200,T11905022,"Rinderhüftsteak, flüssig gewürzt, 250g, 2 Stück - QS",Proteins,12.0,2.842
+201,S61343,"Kartoffeln, mehlig kochend 400g",Fruits&Vegetables,8.0,0.216
+202,S111354893,"Champignons, braun 125g",Fruits&Vegetables,,0.546
+203,S111354893,"Champignons, braun 125g",Fruits&Vegetables,8.0,0.546
+204,S68393,Petersilie glatt/Thymian 10g,Fruits&Vegetables,8.0,0.2153
+205,C001171255,Tomatenmark 35g - (V),Processed&more,,0.11
+206,C001171255,Tomatenmark 35g - (V),Processed&more,500.0,0.11
+207,C00500855,Rinderbrühe clean 6g,Processed&more,,0.043
+208,C241S5,Rotweinpaste 28g,Fruits&Vegetables,,0.084
+209,S61173,"Kartoffel, Drillinge 600g",Fruits&Vegetables,8.0,0.366
+210,C00904995,"Opti Patatas, 4g",Processed&more,,0.0438
+211,C00904995,"Opti Patatas, 4g",Processed&more,730.0,0.0438
+212,C843252,Würzige Dal Soße 160g - (V),Processed&more,,0.78
+213,C843252,Würzige Dal Soße 160g - (V),Processed&more,45.0,0.78
+214,S60643,Fenchel 300g,Fruits&Vegetables,,0.57
+215,C00117905,"Madras Curry, Pulver 2g",Processed&more,730.0,0.11
+216,S66923,Koriander 10g,Fruits&Vegetables,,0.1964
+217,S11893,"Kirschtomaten, rot 125g",Fruits&Vegetables,,0.5
+218,S11893,"Kirschtomaten, rot 125g",Fruits&Vegetables,8.0,0.5
+219,R811285,Spekulatius mini 125g,Supermarket,,0.98
+220,R811285,Spekulatius mini 125g,Supermarket,84.0,0.98
+221,S63663,Birne 200g,Fruits&Vegetables,,0.23
+222,S63663,Birne 200g,Fruits&Vegetables,8.0,0.23
+223,Y11130812,"Schlagsahne, 200ml",Dairy,,0.9097
+224,Y11130812,"Schlagsahne, 200ml",Dairy,37.0,0.9097
+225,Y111252833,"Creme Fraiche 30% Bio, 100g",Dairy,,0.4858
+226,Y111252833,"Creme Fraiche 30% Bio, 100g",Dairy,20.0,0.4858
+227,Y111252833,"Creme Fraiche 30% Bio, 100g",Dairy,37.0,0.4858
+228,C00115595,Bratapfel Gewürz 2g,Processed&more,,0.23
+229,C00115595,Bratapfel Gewürz 2g,Processed&more,550.0,0.23
+230,C815415,"Agavendicksaft Bio, 20ml - (V)",Processed&more,,0.14
+231,Ca56055,"Mandeln blanchiert, gehobelt 20g - (V)",Processed&more,,0.1543
+232,C00119015,"Zimt Ceylon, Pulver Bio 2g",Processed&more,,0.16
+233,T11500922,"Seehecht 250g, 2 Stück",Proteins,,2.287
+234,T11500922,"Seehecht 250g, 2 Stück",Proteins,7.0,2.287
+235,SP2893,Babyspinat 75g,Fruits&Vegetables,,0.511
+236,SP2893,Babyspinat 75g,Fruits&Vegetables,8.0,0.511
+237,C00503415,Souflaki Gewürzmischung 4g Bio,Processed&more,,0.11
+238,C00904895,"Opti Mezze, 4g",Processed&more,,0.047
+239,C00904895,"Opti Mezze, 4g",Processed&more,730.0,0.047
+240,S61363,"Kartoffeln, mehlig kochend 600g",Fruits&Vegetables,,0.312
+241,S61363,"Kartoffeln, mehlig kochend 600g",Fruits&Vegetables,8.0,0.312
+242,T111344671,"Bio Schweinefilet 250g, 4x 62,5g",Proteins,,4.95
+243,T111344671,"Bio Schweinefilet 250g, 4x 62,5g",Proteins,9.0,4.95
+244,Ya1352,"Camembert 45%, 125g_VEGGIE",Dairy,,0.8787
+245,Ya1352,"Camembert 45%, 125g_VEGGIE",Dairy,21.0,0.8787
+246,S61873,"Ofenkartoffel, groß 175g",Fruits&Vegetables,,0.0788
+247,S61873,"Ofenkartoffel, groß 175g",Fruits&Vegetables,8.0,0.0788
+248,Y001196353,Frischecreme 100g,Dairy,,0.455
+249,C00500845,Rinderbrühe clean 4g,Processed&more,,0.035
+250,C00500845,Rinderbrühe clean 4g,Processed&more,365.0,0.035
+251,S68373,Petersilie glatt/Schnittlauch 20g,Fruits&Vegetables,8.0,0.3346
+252,N311S5,Bier Spaten 500ml,Processed&more,,1.4
+253,S61013,Jalapeno Chili 30g,Fruits&Vegetables,,0.21
+254,S22124582,Karotte und Lauch mix 200gr,Fruits&Vegetables,,1.58
+255,C00905695,Vegetarisches Calabrese Pesto 50g,Processed&more,,0.4128
+256,C00905695,Vegetarisches Calabrese Pesto 50g,Processed&more,270.0,0.4128
+257,Ca7365,Rote Bohnen Kidney 390g - (V),Processed&more,,0.38
+258,Ca7365,Rote Bohnen Kidney 390g - (V),Processed&more,600.0,0.38
+259,SP2923,Buschbohnen 150g,Fruits&Vegetables,,0.67
+260,SP2923,Buschbohnen 150g,Fruits&Vegetables,8.0,0.67
+261,C001304015,"Mandeln blanchiert, gehobelt, 10g",Processed&more,,0.134
+262,C00904955,"Opti Curry, 2g",Processed&more,,0.034
+263,Cb79453,"Rotkohl, 400g",Processed&more,,0.89
+264,Cb79453,"Rotkohl, 400g",Processed&more,270.0,0.89
+265,S68483,"Rosmarin, 20cm Zweig 10g",Fruits&Vegetables,,0.0601
+266,S68483,"Rosmarin, 20cm Zweig 10g",Fruits&Vegetables,8.0,0.0601
+267,Cb0515,"Kürbiskerne, ungeröstet, ganz 20g",Processed&more,,0.1466
+268,Cb0515,"Kürbiskerne, ungeröstet, ganz 20g",Processed&more,270.0,0.1466
+269,Ya4685,Jasminreis 150g - (V),Supermarket,,0.262
+270,Ya4685,Jasminreis 150g - (V),Supermarket,360.0,0.262
+271,C00905165,"Opti Fiesta, 4g",Processed&more,,0.057
+272,C00905165,"Opti Fiesta, 4g",Processed&more,730.0,0.057
+273,Cb32315,"Aioli, 40g",Processed&more,,0.1854
+274,C00905765,Sweet Chili Sauce 50g - (V),Processed&more,,0.188
+275,C00905765,Sweet Chili Sauce 50g - (V),Processed&more,270.0,0.188
+276,S111326145,Pastinaken 130g,Fruits&Vegetables,8.0,0.46
+277,C00905185,"Opti Muskat Gewürzmischung, 5g",Processed&more,,0.084
+278,C00905185,"Opti Muskat Gewürzmischung, 5g",Processed&more,730.0,0.084
+279,Ca7605,"Linsen, braun (Lentils) (TETRA) 390g - (V)",Processed&more,,0.36
+280,Ca7605,"Linsen, braun (Lentils) (TETRA) 390g - (V)",Processed&more,600.0,0.36
+281,Ca7165,Balsamico Creme 12g - (V),Processed&more,,0.093
+282,Ca7165,Balsamico Creme 12g - (V),Processed&more,365.0,0.093
+283,Y001154013,"Hirtenkäse, 100g",Dairy,,0.588
+284,Y001154013,"Hirtenkäse, 100g",Dairy,90.0,0.588
+285,T605912,"Lachsfilet 2x150g, 300g",Proteins,,4.14
+286,T605912,"Lachsfilet 2x150g, 300g",Proteins,10.0,4.14
+287,Y11130752,"Butter, 20g",Dairy,,0.2529
+288,Y11130752,"Butter, 20g",Dairy,45.0,0.2529
+289,Y111205153,"Würziger Gouda, gerieben, 100g",Dairy,,0.7
+290,Y111205153,"Würziger Gouda, gerieben, 100g",Dairy,46.0,0.7
+291,Y111205153,"Würziger Gouda, gerieben, 100g",Dairy,70.0,0.7
+292,TP85272,"Premium Räucherlachs, geschnitten, 200g",Proteins,,3.64
+293,S62423,Rote Kartoffeln 400g,Fruits&Vegetables,,0.3
+294,S62423,Rote Kartoffeln 400g,Fruits&Vegetables,8.0,0.3
+295,S16233,Spitzkohl 400g,Fruits&Vegetables,,0.91
+296,S67463,"Kresse, grün 20g",Fruits&Vegetables,,0.2704
+297,S67463,"Kresse, grün 20g",Fruits&Vegetables,8.0,0.2704
+298,Ca15305,"Cranberries, getrocknet, gezuckert, 40g -(V)",Processed&more,,0.36
+299,Ca15305,"Cranberries, getrocknet, gezuckert, 40g -(V)",Processed&more,150.0,0.36
+300,Y603185,Kochsahne 15% 300g,Dairy,,0.6888
+301,Y603185,Kochsahne 15% 300g,Dairy,25.0,0.6888
+302,Cb32295,"Senf, mittelscharf 20ml - (V)",Processed&more,,0.07
+303,S60233,Brokkoli 250g,Fruits&Vegetables,,0.57
+304,S60233,Brokkoli 250g,Fruits&Vegetables,8.0,0.57
+305,SP3003,"Avocado, Hass 140-144g",Fruits&Vegetables,,0.43
+306,SP3003,"Avocado, Hass 140-144g",Fruits&Vegetables,8.0,0.43
+307,C00116445,"Schwarzkümmel, Samen, ganz 2g Bio",Processed&more,,0.13
+308,Ca1395,Körniger Senf 17g - (V),Processed&more,,0.17
+309,S68643,Schnittlauch 10g,Fruits&Vegetables,,0.2604
+310,S68643,Schnittlauch 10g,Fruits&Vegetables,8.0,0.2604
+311,C00131155,Maisstärke 6g,Processed&more,,0.0798
+312,C00131155,Maisstärke 6g,Processed&more,730.0,0.0798
+313,Ra0495,Steinofenbaguette 250g - (V),Supermarket,,0.9321
+314,Ra0495,Steinofenbaguette 250g - (V),Supermarket,30.0,0.9321
+315,Ra0495,Steinofenbaguette 250g - (V),Supermarket,40.0,0.9321
+316,Y111205103,"Junger Gouda, gerieben 50g",Dairy,,0.3799
+317,Y111205103,"Junger Gouda, gerieben 50g",Dairy,70.0,0.3799
+318,C00904585,Aprikosen Chutney 50g - (V),Processed&more,,0.25
+319,C00905235,"Opti Piri Piri, 6g",Processed&more,,0.0626
+320,C00904945,"Opti Kokos Curry, 2g",Processed&more,,0.0354
+321,C00904945,"Opti Kokos Curry, 2g",Processed&more,730.0,0.0354
+322,Y001155233,Grillkäse 200g,Dairy,,1.2888
+323,Y001155233,Grillkäse 200g,Dairy,180.0,1.2888
+324,Y001155233,Grillkäse 200g,Dairy,365.0,1.2888
+325,S62983,"Spitzpaprika, rot 100g",Fruits&Vegetables,,0.37
+326,S62983,"Spitzpaprika, rot 100g",Fruits&Vegetables,8.0,0.37
+327,C00904575,Aprikosen Chutney 25g - (V),Processed&more,,0.202
+328,C00904575,Aprikosen Chutney 25g - (V),Processed&more,270.0,0.202
+329,C00905105,"Gewürzmischung Harissa, 4g",Processed&more,,0.056
+330,C00905105,"Gewürzmischung Harissa, 4g",Processed&more,730.0,0.056
+331,S00459561,Wirsing 200gr geschnitten,Fruits&Vegetables,,0.86
+332,Y111205133,"Würziger Gouda, gerieben, 50g",Dairy,,0.3972
+333,Y111205133,"Würziger Gouda, gerieben, 50g",Dairy,70.0,0.3972
+334,Y111205133,"Würziger Gouda, gerieben, 50g",Dairy,46.0,0.3972
+335,C00905585,Wildpreiselbeeren Marmelade 50g - (V),Processed&more,,0.23
+336,C00905585,Wildpreiselbeeren Marmelade 50g - (V),Processed&more,150.0,0.23
+337,Cb46995,Pflaumenkonfitüre 45 % Fruchtanteil  20g,Processed&more,,0.08
+338,Cb46995,Pflaumenkonfitüre 45 % Fruchtanteil  20g,Processed&more,182.0,0.08
+339,C00114995,Maisstärke 8g,Processed&more,,0.0855
+340,C00114995,Maisstärke 8g,Processed&more,730.0,0.0855
+341,T111241355,Grillhaxe 500g,Proteins,,3.6307
+342,Ca0665,"Senf, süß 15ml - (V)",Processed&more,,0.0573
+343,Y00502152,"Hartkäse ital. Art, geraspelt 40g_VEGGIE",Dairy,,0.4356
+344,Y00502152,"Hartkäse ital. Art, geraspelt 40g_VEGGIE",Dairy,90.0,0.4356
+345,Ya0723,"Gnocchi, frisch, vorgekocht 400g - (V)",Supermarket,,0.899
+346,Ya0723,"Gnocchi, frisch, vorgekocht 400g - (V)",Supermarket,21.0,0.899
+347,T11504632,"Hähnchengeschnetzeltes, mariniert 250g - QS",Proteins,,1.7431
+348,T11504632,"Hähnchengeschnetzeltes, mariniert 250g - QS",Proteins,7.0,1.7431
+349,Yb58723,Veganes Knoblauch Dressing 50ml,Dairy,,0.166
+350,Yb58723,Veganes Knoblauch Dressing 50ml,Dairy,28.0,0.166
+351,C00116535,"Kumin, Samen, gemahlen 2g",Processed&more,,0.059
+352,C00116535,"Kumin, Samen, gemahlen 2g",Processed&more,730.0,0.059
+353,R001157223,Frischer Butter-Blätterteig 280g,Supermarket,,0.96
+354,R001157223,Frischer Butter-Blätterteig 280g,Supermarket,25.0,0.96
+355,S65443,Basilikum 10g,Fruits&Vegetables,,0.28
+356,S65443,Basilikum 10g,Fruits&Vegetables,8.0,0.28
+357,Ca15315,"Sonnenblumenkerne, roh 40g",Processed&more,,0.1104
+358,S68823,Feldsalat 100g,Fruits&Vegetables,,0.829
+359,S68823,Feldsalat 100g,Fruits&Vegetables,8.0,0.829
+360,S60273,Buschbohnen 100g,Fruits&Vegetables,8.0,0.52
+361,Cb0215,Gemüsebrühe 8g,Processed&more,,0.0491
+362,Cb0215,Gemüsebrühe 8g,Processed&more,720.0,0.0491
+363,S119101232,Kohlrabi,Fruits&Vegetables,,0.75
+364,Cb88823,"Süßer Senf, 17g",Processed&more,,0.1
+365,Cb88823,"Süßer Senf, 17g",Processed&more,180.0,0.1
+366,S62163,Radieschen 100g,Fruits&Vegetables,,0.24
+367,S62163,Radieschen 100g,Fruits&Vegetables,8.0,0.24
+368,C00502925,Sriracha 8ml - (V),Processed&more,,0.064
+369,C00502925,Sriracha 8ml - (V),Processed&more,365.0,0.064
+370,C00905415,Sweet Chili Sauce 25g - (V),Processed&more,,0.129
+371,C00905415,Sweet Chili Sauce 25g - (V),Processed&more,270.0,0.129
+372,C00904275,Erdnussbutter 25g - (V),Processed&more,,0.201
+373,C00904275,Erdnussbutter 25g - (V),Processed&more,365.0,0.201
+374,T111317922,Gemischte Hackfleischzubereitung - QS 250g,Proteins,,1.4965
+375,T111317922,Gemischte Hackfleischzubereitung - QS 250g,Proteins,11.0,1.4965
+376,S69663,Baby Pak Choi 75g,Fruits&Vegetables,,0.319
+377,C00130265,"Hoisin Sauce, 25ml - (V)",Processed&more,,0.139
+378,C00130265,"Hoisin Sauce, 25ml - (V)",Processed&more,182.0,0.139
+379,Cb11825,Sojasauce 50ml - (V),Processed&more,,0.13
+380,Cb11825,Sojasauce 50ml - (V),Processed&more,270.0,0.13
+381,C00904265,Erdnussbutter 50g - (V),Processed&more,,0.28
+382,C00904265,Erdnussbutter 50g - (V),Processed&more,365.0,0.28
+383,Cb54025,"Milder Chili-Mix, 2g",Processed&more,,0.0413
+384,S62383,"Rote Beete, frisch, roh 150g",Fruits&Vegetables,,0.16
+385,S62383,"Rote Beete, frisch, roh 150g",Fruits&Vegetables,8.0,0.16
+386,C001332933,"Pikantes Zwiebel-Chutney, 40g",Processed&more,,0.26
+387,Ca15325,"Walnusskerne, Stücke, 20g",Processed&more,,0.1937
+388,Ca15325,"Walnusskerne, Stücke, 20g",Processed&more,100.0,0.1937
+389,TP95172,Hähncheninnenbrustfilet in Lake 250g - QS,Proteins,,1.7389
+390,TP95172,Hähncheninnenbrustfilet in Lake 250g - QS,Proteins,10.0,1.7389
+391,Y820265,Orzo Nudel 180g - (V),Supermarket,,0.3469
+392,Y820265,Orzo Nudel 180g - (V),Supermarket,360.0,0.3469
+393,S60193,Babyspinat 50g,Fruits&Vegetables,,0.428
+394,S60193,Babyspinat 50g,Fruits&Vegetables,8.0,0.428
+395,S68093,Petersilie glatt/Oregano 10g,Fruits&Vegetables,,0.2574
+396,C00502985,Hühnerbrühe 6g,Processed&more,,0.0735
+397,C00502985,Hühnerbrühe 6g,Processed&more,730.0,0.0735
+398,Yb53175,"Kichererbsen-Pasta, 200g",Supermarket,,1.1
+399,C00905673,Chana Masala Sauce 70g,Processed&more,,0.34
+400,C00905673,Chana Masala Sauce 70g,Processed&more,45.0,0.34
+401,S67913,Petersilie glatt 10g,Fruits&Vegetables,,0.1793
+402,S67913,Petersilie glatt 10g,Fruits&Vegetables,8.0,0.1793
+403,Ya03653,Veganes cremiges Sojaprodukt 100g,Dairy,,0.22
+404,Ya03653,Veganes cremiges Sojaprodukt 100g,Dairy,28.0,0.22
+405,Ya03653,Veganes cremiges Sojaprodukt 100g,Dairy,37.0,0.22
+406,S22124585,"Geschnitte Champignons und Lauch, 300g",Fruits&Vegetables,,1.6
+407,S22124584,Kartoffeln 450g Geraucherte,Fruits&Vegetables,,0.97
+408,R829965,"Kräuter-Croutons, 13x13mm, 60g - (V)",Supermarket,,0.475
+409,C843232,Pikante Paprika Soße 160g - (V),Processed&more,,0.75
+410,C00905445,Cannellini Bohnen 380g - (V),Processed&more,,0.38
+411,S60933,Hokkaido Kürbis 600g,Fruits&Vegetables,,0.6
+412,S60933,Hokkaido Kürbis 600g,Fruits&Vegetables,8.0,0.6
+413,Cb81175,Curry Paste rot 25g,Processed&more,,0.36
+414,C00904965,"Opti Curry, 4g",Processed&more,,0.0418
+415,C00904965,"Opti Curry, 4g",Processed&more,730.0,0.0418
+416,T11905462,"Thüringer Rostbratwurst 300g, 3 Stück",Proteins,,1.74
+417,T11905462,"Thüringer Rostbratwurst 300g, 3 Stück",Proteins,42.0,1.74
+418,Ca7005,Tomatenmark 70g - (V),Processed&more,,0.14
+419,Cb32335,"Ketchup, 25g - (V)",Processed&more,,0.0618
+420,Cb32335,"Ketchup, 25g - (V)",Processed&more,365.0,0.0618
+421,Cb47005,Aprikosenkonfitüre 55 % 25g,Processed&more,,0.085
+422,C00904975,"Opti Curry, 6g",Processed&more,,0.0523
+423,T111354372,King Prawns / Garnelen ohne Schale (51/60s) 200g,Proteins,,2.07
+424,T111354372,King Prawns / Garnelen ohne Schale (51/60s) 200g,Proteins,10.0,2.07
+425,S60133,Babyspinat 100g,Fruits&Vegetables,,0.587
+426,S60133,Babyspinat 100g,Fruits&Vegetables,8.0,0.587
+427,C00118135,"Paprika, rot, edelsüß, Pulver 2g",Processed&more,,0.052
+428,T606682,"Schweineschnitzel geplättet 250g, 2 Stück - QS",Proteins,,1.5912
+429,T606682,"Schweineschnitzel geplättet 250g, 2 Stück - QS",Proteins,9.0,1.5912
+430,Y819302,Mini Klöße 375g - (V),Supermarket,,0.89
+431,Y819302,Mini Klöße 375g - (V),Supermarket,21.0,0.89
+432,C00116555,"Thymian, gerebelt 1g",Processed&more,,0.097
+433,C00116555,"Thymian, gerebelt 1g",Processed&more,560.0,0.097
+434,T11905452,"Thüringer Rostbratwurst 200g, 2 Stück",Proteins,,1.19
+435,T11905452,"Thüringer Rostbratwurst 200g, 2 Stück",Proteins,42.0,1.19
+436,C835435,Feigen-Relish 50g - (V),Processed&more,,0.367
+437,C835435,Feigen-Relish 50g - (V),Processed&more,270.0,0.367
+438,Ra26993,Frischer Flammkuchen Teig 260g - (V),Supermarket,,0.7239
+439,T11905602,"Bacon, Streifen 80g - QS",Proteins,,0.4675
+440,T11905602,"Bacon, Streifen 80g - QS",Proteins,48.0,0.4675
+441,Y111255333,"Schmand Bio, 100g",Dairy,,0.4312
+442,Y111255333,"Schmand Bio, 100g",Dairy,29.0,0.4312
+443,C00117185,"Cayenne Pfeffer, Pulver 2g Bio",Processed&more,,0.18
+444,C004254025,Stirfry Mix 200gr,Processed&more,,1.32
+445,Y817025,Spaghetti 270g - (V),Supermarket,,0.3136
+446,Y817025,Spaghetti 270g - (V),Supermarket,365.0,0.3136
+447,Ca7265,"Maronen, gegart 100g - (V)",Processed&more,,1.43
+448,S68903,Salbei/Thymian 10g,Fruits&Vegetables,8.0,0.2514
+449,S69433,"Karotte, ohne Strunk, gelb 100g",Fruits&Vegetables,8.0,0.14
+450,Y111342713,"Raclette Käse, 5x 20g",Dairy,,1.5032
+451,Y111342713,"Raclette Käse, 5x 20g",Dairy,30.0,1.5032
+452,Y111342713,"Raclette Käse, 5x 20g",Dairy,37.0,1.5032
+453,C00904915,"Opti Cajun, 2g",Processed&more,,0.0363
+454,S110a3,"Kirschtomaten, rot 250g",Fruits&Vegetables,,0.81
+455,S110a3,"Kirschtomaten, rot 250g",Fruits&Vegetables,8.0,0.81
+456,Yb58733,Veganes Western Dressing 50ml,Dairy,49.0,0.164
+457,Yb58733,Veganes Western Dressing 50ml,Dairy,37.0,0.164
+458,Y834412,Vegane kleine Suppenmaultaschen 400g,Supermarket,21.0,1.637
+459,Y001361095,"Oatly Bio Cuisine, 250ml",Dairy,,0.5
+460,Y001361095,"Oatly Bio Cuisine, 250ml",Dairy,103.0,0.5
+461,Y834192,Vegane Spätzle 400g,Supermarket,21.0,0.85
+462,C827285,Hefeflocken 5g,Processed&more,,0.24
+463,C827285,Hefeflocken 5g,Processed&more,550.0,0.24
+464,Tb10553,"Grill-Tofu, süßer Chili, 180g",Proteins,60.0,0.8
+465,C00130155,"Ketjap Manis, 18ml - (V)",Processed&more,,0.104
+466,C00130155,"Ketjap Manis, 18ml - (V)",Processed&more,90.0,0.104
+467,S65783,Petersilie/Basilikum 10g,Fruits&Vegetables,,0.2594
+468,S65783,Petersilie/Basilikum 10g,Fruits&Vegetables,8.0,0.2594
+469,C00904605,Tomaten Sugo 200g - (V),Processed&more,,0.644
+470,Y00905152,Ziegenfrischkäse Crumble mit Honig 100g - 12850104,Dairy,,0.9207
+471,Y00905152,Ziegenfrischkäse Crumble mit Honig 100g - 12850104,Dairy,70.0,0.9207
+472,Ya4645,Couscous 150g - (V),Supermarket,,0.2386
+473,Ya4645,Couscous 150g - (V),Supermarket,360.0,0.2386
+474,C00905555,"Gehackter Knoblauch & Zwiebeln in Rapsöl, 35g - (V)",Processed&more,,0.33
+475,C00905555,"Gehackter Knoblauch & Zwiebeln in Rapsöl, 35g - (V)",Processed&more,150.0,0.33
+476,S67673,Petersilie glatt/ Minze 10g,Fruits&Vegetables,,0.2313
+477,S67673,Petersilie glatt/ Minze 10g,Fruits&Vegetables,8.0,0.2313
+478,Ca26085,"Cranberries, getrocknet, gezuckert, 20g - (V)",Processed&more,,0.1917
+479,Ca26085,"Cranberries, getrocknet, gezuckert, 20g - (V)",Processed&more,150.0,0.1917
+480,Ca7425,Mildes Sauerkraut 400g - (V),Processed&more,,0.86
+481,Y111255323,"Sahnejoghurt mild Bio, 150g",Dairy,,0.396
+482,Y111255323,"Sahnejoghurt mild Bio, 150g",Dairy,27.0,0.396
+483,Cb1055,Semmelbrösel 50g,Processed&more,,0.1952
+484,Cb1055,Semmelbrösel 50g,Processed&more,365.0,0.1952
+485,C001184385,"Zatar Gewürz, 6g",Processed&more,,0.099
+486,C001332923,"Ravigote Sauce, 40g ",Processed&more,30.0,0.18
+487,Ca7435,Körniger Senf 40g - (V),Processed&more,,0.22
+488,C00905115,"Gewürzmischung Harissa, 6g",Processed&more,,0.063
+489,C00904485,Tomatenpesto 25g - (V),Processed&more,,0.2435
+490,C00904485,Tomatenpesto 25g - (V),Processed&more,270.0,0.2435
+491,C00904885,"Opti Mezze, 2g",Processed&more,,0.0384
+492,C00904885,"Opti Mezze, 2g",Processed&more,730.0,0.0384
+493,T001372573,"Chick-Eria Filets - 64338931, 180g (2x90g)",Proteins,,1.76
+494,T001372573,"Chick-Eria Filets - 64338931, 180g (2x90g)",Proteins,32.0,1.76
+495,Ca56045,"Sesamsamen, geschält 10g - (V)",Processed&more,,0.0702
