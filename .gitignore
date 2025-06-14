@@ -34,7 +34,7 @@ viz/
 analysis*
 *.txt
 *checklist*
-refactorcodes*
+*.ipynb
 
 # OS files
 .DS_Store

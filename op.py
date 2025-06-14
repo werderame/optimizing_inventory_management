@@ -32,31 +32,20 @@ purchase.load_purchases(inventory)
 
 # demand and inventory are now ready and operations can process them
 
-# Perfect FEFO Ops
-d, i, w = ff.fefo_daily(demand, inventory, 0)
-output_files = {'p_output_demand': d, 'p_output_inventory': i, 'p_output_waste': w}
-for name, df in output_files.items():
-    df.to_csv(os.path.join(output_dir, f"{name}.csv"), index=False)
+d, i, w = ff.fefo_daily(demand, inventory, 0) # Perfect FEFO Ops
+id, ii, iw = ff.fefo_daily(demand, inventory, 0.03)  # Imperfect FEFO Ops # 3% of inventory is replaced in the list randomly
 
-# Imperfect FEFO Ops
-id, ii, iw = ff.fefo_daily(demand, inventory, 0.03)  # 3% of inventory is replaced in the list randomly
-output_files = {'i_output_demand': id, 'i_output_inventory': ii, 'i_output_waste': iw}
-for name, df in output_files.items():
-    df.to_csv(os.path.join(output_dir, f"{name}.csv"), index=False)
-
-print('FEFO allocation complete! Demand, Inventory and Waste Output datasets available in the folder model_output.')   
+print('💾 FEFO allocation complete! Output available as CSV.')   
 
 print('Starting to Optimize Inventory')
-demand_suggested = sol.optimize_inventory(gap=0.05)
-sol.publish_solution(demand_suggested)
+#demand_suggested = sol.optimize_inventory(gap=0.05)
+#sol.publish_solution(demand_suggested)
+print('🧩 Optimization complete.')
 
-
-
-# Imperfect FEFO Ops
-
-errors = np.linspace(0, 0.15, 11)
+# === Results ===
+errors = [[0, 'Perfect FEFO'], [0.03, 'Imperfect FEFO']]
 results_list = []
-for e in errors:
+for e, t in errors:
     id, ii, iw = ff.fefo_daily(demand, inventory, e)  
     
     # vars
@@ -64,26 +53,57 @@ for e in errors:
     i_fulfilled = id['fulfilled_demand_q'].sum()
     i_shortages = id.groupby(['art_code', 'demand_date'])['remaining_demand_q'].last().sum()
     total_demand = id[['art_code', 'demand_date', 'nominal_demand_q']].drop_duplicates()['nominal_demand_q'].sum()
-
-    # results
-    print(f'--- Imperfect Daily FEFO with {e * 100:.1f}% randomness')
-    print(f'- Units to waste: {i_waste}')
-    print(f'- Shortages: {i_shortages}')
-    print(f'- Waste + Shortages: {i_shortages + i_waste}')
-    print(f'- Percentage of Waste + Shortages: {(i_waste + i_shortages) / total_demand * 100:.2f}%\n')
-    print(f'- Met demand: {i_fulfilled}')
-    print(f'- Met demand: {i_fulfilled / total_demand * 100:.2f}%')
-    print('-----------------------')
     
     results_list.append({
-    'randomness_pct': e * 100,
-    'waste_units': i_waste,
-    'shortage_units': i_shortages,
-    'total_loss_units': i_waste + i_shortages,
-    'loss_pct': (i_waste + i_shortages) / total_demand * 100,
-    'fulfilled_units': i_fulfilled,
-    'fulfilled_pct': i_fulfilled / total_demand * 100,
-    'total_demand': total_demand
+    'model': f'{t}'
+    , 'error_pct': e * 100
+    , 'waste_pcs': i_waste
+    , 'shortage_pcs': i_shortages
+    , 'loss_pct': round((i_waste + i_shortages) / total_demand * 100, 2)
+    , 'fulfilled_d': i_fulfilled
+    , 'fulfilled_pct': round(i_fulfilled / total_demand * 100, 2)
 })
 results_df = pd.DataFrame(results_list)
-print(results_df)
+
+optimal_fefo_w = pd.read_csv(os.path.join(output_dir,'o_output_inventory.csv'))[['inv_id', 'qty_used']]
+optimal_fefo_w = (
+    optimal_fefo_w
+    .groupby(["inv_id"])
+    .agg(
+        total_qty_used=("qty_used", "sum")
+    )
+    .reset_index()) # Additional usage
+optimal_fefo_w['total_qty_used'] = optimal_fefo_w['total_qty_used'].astype(int)
+
+waste_pro = pd.merge(w, optimal_fefo_w, how='left').fillna(0)
+waste_pro = waste_pro.rename(columns={'total_qty_used': 'opt_fefo_usage'})
+waste_pro = waste_pro.rename(columns={'expired_quantity': 'per_fefo_w'})
+waste_pro['opt_fefo_w'] = waste_pro['per_fefo_w'] - waste_pro['opt_fefo_usage'].astype(int)
+# enforce only positive waste (negative would correspond to units in addition to customer demand)
+waste_pro['opt_fefo_w'] = waste_pro['opt_fefo_w'].clip(lower=0) 
+
+o_w_total = sum(waste_pro['opt_fefo_w'])
+
+shortage_at_zero = int(results_df.loc[results_df['error_pct'] == 0, 'shortage_pcs'].values[0])
+
+additional_o_inventory = pd.read_csv('./data/model_output/o_output_inventory.csv')
+o_fulfilled = additional_o_inventory['qty_used'].sum().astype(int)
+
+fulfilled_at_zero = int(results_df.loc[results_df['error_pct'] == 0, 'fulfilled_d'].values[0])
+
+
+results_list_o = []
+results_list_o.append({
+    'model': '+ Optimization'
+    , 'error_pct': 0.0
+    , 'waste_pcs': o_w_total
+    , 'shortage_pcs': shortage_at_zero
+    , 'loss_pct': round(o_w_total + shortage_at_zero / total_demand * 100, 2)
+    , 'fulfilled_d': fulfilled_at_zero + o_fulfilled
+    , 'fulfilled_pct': round((fulfilled_at_zero + o_fulfilled) / total_demand * 100, 2)
+})
+results_df_o = pd.DataFrame(results_list_o)
+
+table = combined_df = pd.concat([results_df, results_df_o], ignore_index=True)
+table.to_csv(os.path.join(output_dir, 'table.csv'), index=False)
+print(table)

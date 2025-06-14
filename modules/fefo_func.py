@@ -1,10 +1,13 @@
 # fefo model
 
+import os
 import pandas as pd
 import random
 import time
-#random.seed(time.time())
+
 random.seed(42) # reproduce results
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+output_dir = os.path.join(base_dir, "data", "model_output")
 
 
 def fefo_daily (demand, inventory, num=0):
@@ -163,5 +166,12 @@ def fefo_daily (demand, inventory, num=0):
     output_demand = pd.DataFrame(output_demand)
     output_inventory = pd.DataFrame(output_inventory)
     output_waste = pd.DataFrame(output_waste)
+
+    # Dump Sets
+    output_files = {'{output_demand}_output_demand': output_demand,
+                     '{output_inventory}_output_inventory': output_inventory, 
+                     '{output_waste}_output_waste': output_waste}
+    for name, df in output_files.items():
+        df.to_csv(os.path.join(output_dir, f"{name}.csv"), index=False)
 
     return output_demand, output_inventory, output_waste
