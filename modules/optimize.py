@@ -168,7 +168,7 @@ def optimize_inventory(gap=0.05):
     solution.to_csv(os.path.join(model_dir, 'solver_solution.csv'), index=False)
     inv_usage_df.to_csv(os.path.join(model_dir, 'o_output_inventory.csv'), index=False)
     print('Solution found! Solver Solution and Inventory Usage CSVs available in the folder model_output.')
-    return solution
+    return inv_usage_df
 
 # === Push to Database ===
 def publish_solution(demand_suggested):

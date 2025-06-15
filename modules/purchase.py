@@ -93,7 +93,7 @@ def generate_purchase_list():
         return pd.DataFrame(agg_demand)
 
     agg_demand = aggregate_window(demand) # Apply Aggregation
-    print(f"Aggregated Demand: {len(agg_demand)} rows")
+
     return agg_demand
 
 def purchase_inventory(agg_demand, first_treshold_sl = 9, second_treshold_sl = 21, first_buffer = 1.005, second_buffer = 1.1, third_buffer = 1.5):
