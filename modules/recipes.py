@@ -8,11 +8,12 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from thefuzz import fuzz, process
 
+# === 0. Set Directories ===
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+raw_dir = os.path.join(base_dir, "data", "raw")
+processed_dir = os.path.join(base_dir, "data", "processed")
+
 def generate_hellofresh_bom():
-    # === 0. Set Directories ===
-    folder_name = "Optimization_project"
-    raw_dir = os.path.join(folder_name, "data", "raw")
-    processed_dir = os.path.join(folder_name, "data", "processed")
 
     headers = {"User-Agent": "Mozilla/5.0"}
 

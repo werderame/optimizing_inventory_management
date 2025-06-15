@@ -4,11 +4,11 @@
 
 In growing startups dealing with perishable goods, operational precision is not a nice-to-have—it’s a necessity. This project tells the story of a fictional meal kit business navigating the real-world challenge of scaling its operations while maintaining efficiency. Through simulation and optimization, we evaluate the cost of minor process deviations and explore the potential for smarter models that not only cut waste but also create new opportunities for impact and customer engagement.
 
-Three allocation models—imperfect FEFO, perfect FEFO, and optimization-based—are compared to reveal the operational and strategic consequences of inventory behavior. The results demonstrate that even small inefficiencies in stock handling (like a 3% deviation from FEFO) compound into significant production losses and organizational stress. More than a technical modeling exercise, this is a strategic narrative about how data and operations intertwine to shape product quality, team workload, and business opportunity.
+Three **allocation models**—imperfect FEFO, perfect FEFO, and optimization-based—are compared to reveal the operational and strategic **consequences** of inventory behavior. The results demonstrate that even small inefficiencies in stock handling (like a 3% deviation from FEFO) compound into significant production losses and organizational stress. More than a technical modeling exercise, this is a strategic narrative about how data and operations intertwine to shape product quality, team workload, and business opportunity.
 
 ## Introduction
 
-The project simulates end-to-end inventory operations for a meal kit company. Starting from scraped HelloFresh recipes, it builds a synthetic production and inventory pipeline with a focus on modeling how shelf life, expiration dates, and allocation rules affect waste and fulfillment.
+The project simulates end-to-end inventory operations for a meal kit company. Starting from scraped HelloFresh recipes publicly available, it builds a synthetic production and inventory pipeline with a focus on modeling how shelf life, expiration dates, and allocation rules affect waste and fulfillment.
 
 The story centers on a critical insight: **imperfect adherence to FEFO is not just a technical glitch—it’s a strategic vulnerability**. The project models three approaches:
 
@@ -27,12 +27,12 @@ The final outcome is both technical and business-facing: quantifying hidden loss
 A reproducible pipeline was developed to simulate realistic data:
 
 1. **Recipe scraping**: Recipes are extracted from HelloFresh, including names, tags, and ingredients.
-2. **Master data integration**: A manually curated article list maps real-world item codes, unit costs (optional), and shelf life categories.
+2. **Master data integration**: A manually curated article list maps real-world item codes, unit costs (optional), and shel file details.
 3. **Recipe BOMs**: Ingredient lists are matched with articles using fuzzy matching (Levenshtein distance) to generate full Bills of Materials.
 4. **Menu planning and demand generation**:
-   - **Horizon**: 6 weeks (aligned with frozen weekly menus in the industry).
+   - **Horizon**: 6 weeks (aligned the with menu sales window horizon in the industry).
    - **Daily volume**: 950–1050 kits/day (a balance between realistic volume and manageable dataset size).
-   - **Tags as weights**: Recipes are not scored directly. Instead, tags (e.g., “Protein-rich”) influence category-level weightings, mimicking how real meal planning operates.
+   - **Tags as weights**: Recipes are not scored directly. Instead, tags (e.g., “Family Friendly”) influence category-level weightings, mimicking how real meal planning operates.
 
 ### Inventory Creation
 
@@ -101,14 +101,14 @@ This project tests how small deviations from the FEFO principle impact performan
 | Scenario             | Waste Units | Shortages | Loss %     | Fulfilled Demand % |
 |----------------------|-------------|-----------|------------|-------------|
 | **Perfect FEFO**     |       2,987 |         0 |    **0.28%** |     100.00% |
-| **Imperfect FEFO**   |      20,790 |    16,396 |    **3.50%** |      98.46% |
-| **+ Optimization**   |         871 |         0 |    **0.08%** |     106.47% |
+| **Imperfect FEFO**   |      15,294 |    10,928 |    **2.47%** |      98.97% |
+| **+ Optimization**   |         138 |         0 |    **0.01%** |     106.47% |
 
-> **Loss %** = (Waste units + Shortages units) / Customer Demand<br/> **Fulfilled Demand %** = Produced Demand / Customer Demand
+> **Waste** = expired unused inventory within the demand time window<br/> **Loss %** = (Waste units + Shortages units) / Customer Demand<br/> **Fulfilled Demand %** = Produced Demand / Customer Demand
 
-📌 A small operational deviation—just 3% of inventory picked out of expiration order—results in **over 20,000 additional waste units** and **16,000 unmet recipe requirements**, showing how seemingly minor inefficiencies scale into major losses.
+🎯 A small operational deviation—just 3% of inventory picked out of expiration order—results in **15,000 additional waste units** and **10,000 unmet recipe requirements**, showing how seemingly minor inefficiencies scale into major losses.
 
-The optimization model doesn’t just improve numbers—it highlights untapped value in leftover inventory, encouraging alternative business models (e.g., donating, discounting, or batch-selling surplus meals).
+🧩 The optimization model doesn’t just improve numbers—it highlights untapped value in leftover inventory, encouraging alternative business models (e.g., donating, discounting, or batch-selling surplus meals).
 
 ---
 
@@ -140,5 +140,5 @@ This project is a call for operational maturity, not only for technical accuracy
 
 - [x] ER diagram and data lineage
 - [x] Full codebase with modular scripts
-- [x] Notebook for solver and scenario runs
+- [x] Output overview of the three models
 - [x] Database with intermediate and final tables
