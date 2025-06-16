@@ -7,15 +7,15 @@ import ast
 import numpy as np
 import os
 
+# === DIR Config ===
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+db_dir = os.path.join(base_dir, "data", "db_ready")
+processed_dir = os.path.join(base_dir, "data", "processed")
+
 def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
 
     random.seed(42) # reproduce results
     np.random.seed(42)
-
-    # === 0. Set Directories ===
-    folder_name = "Optimization_project"
-    processed_dir = os.path.join(folder_name, "data", "processed")
-    db_dir = os.path.join(folder_name, "data", "db_ready")
 
     # === 1. Load or Initialize Datasets ===
     """ 1.1 Load the BOM to work with the tags"""
@@ -108,10 +108,12 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
 
     """ 6.3 Dump the article table to the db datasets"""
     art_unique = clean_bom['art_code'].drop_duplicates().reset_index(drop=True)
-    hf_inventory = skus[['art_code', 'art_name', 'art_category', 'unit_cost', 'temperature_class', 'shelf_life']].drop_duplicates()
-    article_df = pd.merge(art_unique, hf_inventory, how='left')
+    print("art_unique", art_unique)
+    hf_inventory = skus[['art_code', 'art_name', 'art_category', 'shelf_life']].drop_duplicates()
+    print("hf_inventory", hf_inventory)
+    article_df = pd.merge(art_unique, hf_inventory, how='left', on='art_code')
     article_df['art_id'] = article_df.index
-    article_df = article_df[['art_id', 'art_code', 'art_name', 'art_category', 'unit_cost', 'temperature_class', 'shelf_life']]
+    article_df = article_df[['art_id', 'art_code', 'art_name', 'art_category', 'shelf_life']]
     article_df.to_csv(os.path.join(db_dir, "article_table.csv"), index=False)
 
     """ 6.4 Dump the ingredient table to the db datasets"""
