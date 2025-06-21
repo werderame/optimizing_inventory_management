@@ -3,7 +3,7 @@ import importlib
 from modules import recipes, menu, database, purchase, fefo_func as ff, optimize as sol, analyze
 import pandas as pd
 import warnings
-importlib.reload(recipes, menu, database, purchase, ff, sol)
+importlib.reload(recipes), importlib.reload(menu), importlib.reload(database), importlib.reload(purchase), importlib.reload(ff), importlib.reload(sol)
 
 # Suppress warnings
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -15,7 +15,7 @@ output_dir = os.path.join(base_dir, "Optimization_project", "data", "model_outpu
 
 # === SCRAPE RECIPES & CREATE RECIPES ===
 #recipes.generate_hellofresh_bom() 
-#menu.plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01') 
+menu.plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01') 
 
 # === LOAD DB DATA ===
 database.create_database()

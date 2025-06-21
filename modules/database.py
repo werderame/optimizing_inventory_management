@@ -64,7 +64,6 @@ def create_tables():
             art_code VARCHAR(255) NOT NULL,
             art_name VARCHAR(255) NOT NULL,
             art_category VARCHAR(255),
-            unit_cost FLOAT,
             shelf_life FLOAT NULL
         );
         """,
@@ -159,7 +158,7 @@ def load_data():
     ]
 
     table_columns = {
-        "article": "(art_id,art_code,art_name,art_category,unit_cost,shelf_life)",
+        "article": "(art_id,art_code,art_name,art_category,shelf_life)",
         "recipe": "(recipe_id,recipe_name)",
         "ingredient": "(ingredient_id,recipe_id,art_id,util_coeff)",
         "demand": "(demand_id,recipe_id,demand_q,demand_date)",
@@ -206,8 +205,7 @@ def create_demand_summary_view():
             art_code,
             art_name,
             art_category,
-            demand_q * util_coeff AS production_requirement,
-            demand_q * unit_cost AS goods_cost
+            demand_q * util_coeff AS production_requirement
         FROM full_demand
         ORDER BY demand_date, recipe_name
     )
