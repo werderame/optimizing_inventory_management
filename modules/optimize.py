@@ -71,7 +71,7 @@ def optimize_inventory(gap=0.05):
     bom = bom[bom['recipe_id'].isin(sample_recipes)]
 
     # ⬇️ Limit to first days
-    days = days[:3]
+    days = days[:]
 
     # ⬇️ Keep only inventory relevant to selected BOM art_codes
     relevant_art_codes = bom['art_code'].unique()

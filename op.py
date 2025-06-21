@@ -3,14 +3,13 @@ import importlib
 from modules import recipes, menu, database, purchase, fefo_func as ff, optimize as sol, analyze
 import pandas as pd
 import warnings
-importlib.reload(recipes), importlib.reload(menu), importlib.reload(database), importlib.reload(purchase), importlib.reload(ff), importlib.reload(sol)
+importlib.reload(recipes), importlib.reload(menu), importlib.reload(database) 
+importlib.reload(purchase), importlib.reload(ff), importlib.reload(sol)
 
-# Suppress warnings
-warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=UserWarning) # Suppress warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-# Set up paths
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # Set up paths
 output_dir = os.path.join(base_dir, "Optimization_project", "data", "model_output")
 
 # === SCRAPE RECIPES & CREATE RECIPES ===
