@@ -96,48 +96,59 @@ def generate_purchase_list():
 
     return agg_demand
 
-def purchase_inventory(agg_demand, first_treshold_sl = 9, second_treshold_sl = 21, first_buffer = 1.005, second_buffer = 1.1, third_buffer = 1.5):
+import numpy as np
+import pandas as pd
+from datetime import timedelta
+
+def purchase_inventory(agg_demand, first_treshold_sl=9, second_treshold_sl=21, first_buffer=1.005, second_buffer=1.1, third_buffer=1.5):
     # === 4. "Purchase", i.e. Create Inventory Quantities ===
     """ 4.1 Create the inventory quantities based on the aggregated demand and shelf life. """
     agg_demand['quantity'] = 0
     for i, row in agg_demand.iterrows():
         if row['shelf_life'] <= first_treshold_sl:
-            agg_demand.loc[i,'quantity'] = row['art_demand'] * np.random.uniform(1.0, first_buffer)
+            agg_demand.loc[i, 'quantity'] = row['art_demand'] * np.random.uniform(1.0, first_buffer)
         elif row['shelf_life'] <= second_treshold_sl:
-            agg_demand.loc[i,'quantity'] = row['art_demand'] * np.random.uniform(1.0, second_buffer)
+            agg_demand.loc[i, 'quantity'] = row['art_demand'] * np.random.uniform(1.0, second_buffer)
         else:
-            agg_demand.loc[i,'quantity']  = row['art_demand'] * np.random.uniform(1.0, third_buffer)
+            agg_demand.loc[i, 'quantity'] = row['art_demand'] * np.random.uniform(1.0, third_buffer)
 
-    agg_demand['quantity'] = agg_demand['quantity'].astype('int')
-    agg_demand['quantity'] = agg_demand['quantity'].apply(lambda x: max(10,x)) # at least 10 pcs at inventory
-    agg_demand.reset_index(drop=True)
+    agg_demand['quantity'] = agg_demand['quantity'].astype(int)
+    agg_demand['quantity'] = agg_demand['quantity'].apply(lambda x: max(10, x))  # at least 10 pcs at inventory
+    agg_demand.reset_index(drop=True, inplace=True)
     agg_demand['batch_id'] = agg_demand.index + 1
 
     """ 4.2 Assign an expiration date to the purchased inventory """
-    # assign a random date between the past week and the stretch of the MLOR
-    agg_demand['expiration_date'] = agg_demand.apply(
-        lambda row: row['demand_date'] + timedelta(days=np.random.randint(2, (row['shelf_life']))), 
-        axis=1
-        )
+    def assign_expiration(row):
+        sl = row['shelf_life']
+        if sl <= first_treshold_sl:
+            min_days, max_days = 2, min(sl, 7)
+        elif sl <= second_treshold_sl:
+            min_days, max_days = 4, sl
+        else:
+            min_days, max_days = 15, sl
+        min_days = min(min_days, sl)
+        max_days = max(min_days + 1, sl)
+        offset_days = np.random.randint(min_days, max_days + 1)
+        return row['demand_date'] + timedelta(days=offset_days)
+
+    agg_demand['expiration_date'] = agg_demand.apply(assign_expiration, axis=1)
 
     agg_demand = agg_demand[['art_code', 'quantity', 'expiration_date', 'batch_id']]
 
     """ 4.3 "Palletize" inventory, i.e. fragment the inventory into pallets of max 1_000 units."""
-    # 25 per crate, 4 creates per level, 10 levels = 1_000 units per pallet
-    max_pallet = 25 * 4 * 10 
+    max_pallet = 25 * 4 * 10  # 1_000 units per pallet
     pal_inventory = agg_demand.copy()
 
     palletized = []
     for i, row in pal_inventory.iterrows():
-        
         while row.quantity > max_pallet:
-            temp_row = {}
             temp_row = row.copy()
             temp_row['quantity'] = max_pallet
             palletized.append(temp_row)
             row['quantity'] -= max_pallet
         palletized.append(row)
-    palletized = pd.DataFrame(palletized).reset_index()
+
+    palletized = pd.DataFrame(palletized).reset_index(drop=True)
     palletized['inv_id'] = palletized.index + 1
     inventory = palletized[['inv_id', 'art_code', 'quantity', 'expiration_date', 'batch_id']]
     return inventory

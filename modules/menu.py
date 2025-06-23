@@ -108,9 +108,7 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
 
     """ 6.3 Dump the article table to the db datasets"""
     art_unique = clean_bom['art_code'].drop_duplicates().reset_index(drop=True)
-    print("art_unique", art_unique)
     hf_inventory = skus[['art_code', 'art_name', 'art_category', 'shelf_life']].drop_duplicates()
-    print("hf_inventory", hf_inventory)
     article_df = pd.merge(art_unique, hf_inventory, how='left', on='art_code')
     article_df['art_id'] = article_df.index
     article_df = article_df[['art_id', 'art_code', 'art_name', 'art_category', 'shelf_life']]
