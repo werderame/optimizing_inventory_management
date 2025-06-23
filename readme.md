@@ -100,13 +100,13 @@ This project tests how small deviations from the FEFO principle impact performan
 
 | Scenario             | Waste Units | Shortages | Loss %     | Fulfilled Demand % |
 |----------------------|-------------|-----------|------------|-------------|
-| **Perfect FEFO**     |       2,987 |         0 |    **0.28%** |     100.00% |
-| **Imperfect FEFO**   |      15,294 |    10,928 |    **2.47%** |      98.97% |
-| **+ Optimization**   |         138 |         0 |    **0.01%** |     106.47% |
+| **Perfect FEFO**     |       2,699 |        70 |    **0.26%** |      99.99% |
+| **Imperfect FEFO**   |      17,273 |    11,638 |    **2.72%** |      98.90% |
+| **+ Optimization**   |         564 |        70 |    **0.06%** |     107.79% |
 
 > **Waste** = expired unused inventory within the demand time window<br/> **Loss %** = (Waste units + Shortages units) / Customer Demand<br/> **Fulfilled Demand %** = Produced Demand / Customer Demand
 
-🎯 A small operational deviation—just 3% of inventory picked out of expiration order—results in **15,000 additional waste units** and **10,000 unmet recipe requirements**, showing how seemingly minor inefficiencies scale into major losses.
+🎯 A small operational deviation—just 3% of inventory picked out of expiration order—results in **17,000 additional waste units** and **11,000 unmet recipe requirements**, showing how seemingly minor inefficiencies scale into major losses.
 
 🧩 The optimization model doesn’t just improve numbers—it highlights untapped value in leftover inventory, encouraging alternative business models (e.g., donating, discounting, or batch-selling surplus meals).
 
