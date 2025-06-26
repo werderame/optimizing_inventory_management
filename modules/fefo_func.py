@@ -5,7 +5,9 @@ import pandas as pd
 import random
 import time
 
-rng = random.Random(42)
+rng = random.Random(42) # reproduce results
+
+# === DIR Config ===
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 output_dir = os.path.join(base_dir, "data", "model_output")
 

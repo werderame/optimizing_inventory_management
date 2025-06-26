@@ -1,3 +1,5 @@
+# database setup module
+
 import os
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
@@ -11,7 +13,7 @@ DB_PASSWORD=db.DB_PASSWORD
 DB_HOST=db.DB_HOST
 DB_PORT=db.DB_PORT
 
-
+# === DIR Config ===
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 db_dir = os.path.join(base_dir, "data", "db_ready")
 

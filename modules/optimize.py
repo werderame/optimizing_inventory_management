@@ -21,20 +21,20 @@ DB_PORT=db.DB_PORT
 
 
 def optimize_inventory(gap=0.05):
-    # === DATASET SETUP ===
+    # === 1.DATASET SETUP ===
 
-    # Load tables
+    """ 1.1 Load relevant data """
     articles = pd.read_csv(os.path.join(db_dir, 'article_table.csv'))
     ingredients = pd.read_csv(os.path.join(db_dir, 'ingredient_table.csv'))
     recipes = pd.read_csv(os.path.join(db_dir, 'recipe_table.csv'))
     demand = pd.read_csv(os.path.join(db_dir, 'demand_table.csv'))
     i = pd.read_csv(os.path.join(model_dir, 'i.csv')) # inventory development (for availability)
 
-    # Process demand
+    """ 1.2 Process demand """
     demand['demand_date'] = pd.to_datetime(demand['demand_date'])
     days = sorted(demand['demand_date'].dt.strftime('%Y-%m-%d').unique().tolist())
 
-    # Create BOM: recipe_id, art_code, util_coeff
+    """ 1.3 Create BOM: recipe_id, art_code, util_coeff """
     bom = (
         ingredients
         .merge(articles[['art_id', 'art_code']], on='art_id', how='left')
@@ -43,7 +43,7 @@ def optimize_inventory(gap=0.05):
     recipes = bom['recipe_id'].unique()
     recipes = [int(r) for r in bom['recipe_id'].unique()]  # force int
 
-    # Clean and group inventory
+    """ 1.4 Prep Inventory Data from the remaining inventory after Perfect FEFO allocation """
     i = i.sort_values(['art_code', 'inv_id'])
     available_inv = i[i['end_inventory_q'] > 0]
     available_inv = (
@@ -54,7 +54,7 @@ def optimize_inventory(gap=0.05):
     available_inv['expiration_date'] = pd.to_datetime(available_inv['expiration_date'])
     available_inv = available_inv[['art_code', 'expiration_date', 'remaining_q', 'inv_id']]
 
-    # Total Capacity
+    """ 1.5 Caclulate the demand per day """
     rdem = (demand    
         .groupby('demand_date', as_index=False)
         .agg(total_recipes=('demand_q', 'sum'))
@@ -63,15 +63,17 @@ def optimize_inventory(gap=0.05):
     rdem['demand_date'] = rdem['demand_date'].astype(str)
     prod_cap = 1200
 
+    
     #################################################
+    """ 1.6 Use the following box to limit the dataset for testing purposes """
 
     # === SHRINK SETS FOR TESTS ===
     # ⬇️ Limit to first recipes
-    sample_recipes = bom['recipe_id'].unique()[:]
+    sample_recipes = bom['recipe_id'].unique()[:] # Adjust to limit the number of recipes
     bom = bom[bom['recipe_id'].isin(sample_recipes)]
 
     # ⬇️ Limit to first days
-    days = days[:]
+    days = days[:] # Adjust to limit the number of days
 
     # ⬇️ Keep only inventory relevant to selected BOM art_codes
     relevant_art_codes = bom['art_code'].unique()
@@ -80,23 +82,27 @@ def optimize_inventory(gap=0.05):
     #################################################
 
 
-
-    # DECISIONS 
-    # How many of each recipe to make each day
-    x = {(r, d): LpVariable(f"x_{r}_{d}", lowBound=0, cat=LpInteger)
+    # === 2. Decision Variables ===
+    
+    """ 2.1 How many of each recipe to make each day"""
+    # Create a dict of recipe-day (r, d) pairs and calculate the number of r for each d (x_r_d)
+    x = {(r, d): LpVariable(f"x_{r}_{d}", lowBound=0, cat=LpInteger) # where r is recipe and d is day
         for r in recipes for d in days}
 
+    """ 2.2 Decide what inventory batch to use for each day """
     # Auxiliary: inventory usage by inv_id per day
     y = {(iid, d): LpVariable(f"y_{iid}_{d}", lowBound=0)
         for iid in available_inv['inv_id'].unique() for d in days}
 
-    # OBJECTIVE: 
-    # Maximize total recipes made
-    model = LpProblem("Mock_Recipe_Optimization", LpMaximize)
+    # === 3. Objective Function ===
+    """ 3.1 Maximize the total number of recipes made """
+
+    model = LpProblem("Inventory_Usage_Optimization", LpMaximize)
     model += lpSum(x[r, d] for r in recipes for d in days)
 
-    # CONSTRAINTS: 
-    # Ingredient demand must be met by available pallets
+    # === 4. Constraints ===
+
+    """ 4.1 Ingredient demand must be met by available pallets"""
     for d in days:
         day_dt = pd.to_datetime(d)
         for art in bom['art_code'].unique():

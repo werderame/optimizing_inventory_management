@@ -8,7 +8,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from thefuzz import fuzz, process
 
-# === 0. Set Directories ===
+# === DIR Config ===
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_dir = os.path.join(base_dir, "data", "raw")
 processed_dir = os.path.join(base_dir, "data", "processed")
