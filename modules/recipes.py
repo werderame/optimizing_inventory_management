@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from thefuzz import fuzz, process
 
 # === DIR Config ===
+
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_dir = os.path.join(base_dir, "data", "raw")
 processed_dir = os.path.join(base_dir, "data", "processed")
@@ -18,9 +19,9 @@ def generate_hellofresh_bom():
     headers = {"User-Agent": "Mozilla/5.0"}
 
     # === 1. Load or Initialize Datasets ===
+
     """ 1.1 Load recipe URLs from HelloFresh JSON file""" 
-    # RECIPE LINKS
-    recipe_url_path = os.path.join(raw_dir, "hellofresh_recipe_urls.json")
+    recipe_url_path = os.path.join(raw_dir, "hellofresh_recipe_urls.json") # public www repository of hellofresh recipes
     with open(recipe_url_path, "r", encoding="utf-8") as file:
         recipe_links = list(set(json.load(file)))
     print(f"📁 Loaded {len(recipe_links)} recipe URLs from file.")
@@ -46,6 +47,7 @@ def generate_hellofresh_bom():
 
 
     # === 2. Scrape each recipe URL for ingredients and tags ===
+
     all_recipes = []
     for counter, recipe_url in enumerate(recipe_links, 1):
         try:
@@ -80,6 +82,7 @@ def generate_hellofresh_bom():
             print(f"❌ Error scraping {recipe_url}: {e}")
 
     # === 3. Flatten into BOM DataFrame ===
+
     bom_data = []
     for recipe in all_recipes:
         for ing in recipe["ingredients"]:
@@ -94,6 +97,7 @@ def generate_hellofresh_bom():
     bom_df['full_description'] = (bom_df['ingredient_name'] + ' - ' + bom_df['quantity']).str.lower()
 
     # === 4. Save outputs ===
+
     """4.1 Recipes """
     # BOM
     os.makedirs(processed_dir, exist_ok=True)
@@ -107,6 +111,7 @@ def generate_hellofresh_bom():
     print(f"BOM df: ({len(bom_df)} lines)")
 
     # === 5. Match Ingredients (HelloFresh) to SKUs (Inventory)
+
     """ 5.1 Clean and deduplicate SKUs """
     skus = skus[['art_code', 'art_name', 'art_category']].drop_duplicates()
     skus['art_name'] = skus['art_name'].str.replace(" - (v)", "", regex=False)
@@ -143,6 +148,7 @@ def generate_hellofresh_bom():
     # MANUAL BOM ----> intermediate manual step to reconcile the matches and the coefficients
 
     # === 6. BOM building ===
+
     """ 6.1 Merge HelloFresh BOM with reconciled SKUs """
     manual_bom = pd.read_csv(os.path.join(processed_dir, "ingredient_skus_reconciled.csv"))
     bom_df = pd.read_csv(os.path.join(processed_dir, "recipes_bom.csv")) # this df is already loaded via this very script, however I want to keep the loading to be able to skip the scraping step in the future
@@ -156,6 +162,7 @@ def generate_hellofresh_bom():
     print(f"Lines with an unknown art code: {missing_lines}, made of {count_missing} unique articles ({round(missing_lines/len(bom_match) * 100,1)}% of the entire dataset) -> these are goind to be sacrificed.\n")
 
     # === 7. Clean and Save the BOM ===
+    
     """ 7.1 Clean """
     clean_bom = bom_match.drop(columns=['ing'])
     clean_bom = clean_bom[clean_bom['art_code'].notna()]

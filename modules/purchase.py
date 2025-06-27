@@ -10,6 +10,7 @@ from . import db_config as db
 import random
 
 # === 0. DB Configuration and Directories ===
+
 DB_NAME=db.DB_NAME
 DB_USER=db.DB_USER
 DB_PASSWORD=db.DB_PASSWORD
@@ -24,7 +25,9 @@ random.seed(42) # reproduce results
 np.random.seed(42)
 
 def generate_purchase_list():
+    
     # === 1. Query Ingredient Demand from DB ===
+
     conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
     dict_cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     dict_cur.execute("SELECT * FROM demand_summary ")
@@ -37,6 +40,7 @@ def generate_purchase_list():
     demand = pd.DataFrame(demand)
 
     # === 2. Enrich with Master Data ===
+
     conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
     dict_cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     dict_cur.execute("SELECT DISTINCT art_code, art_category, shelf_life FROM article ")
@@ -52,7 +56,10 @@ def generate_purchase_list():
     demand = pd.merge(demand, master_data, on='art_code', how='left') # Merge demand with master data
 
     # === 3. Aggregate Demand Lines based on Shelf Life ===
-    """ we consider quantities with a close date as a single non-fragmented quantity. replicating the logic of how purchase orders work. """
+
+    # we consider quantities with a close date as a single non-fragmented quantity, 
+    # replicating the logic of how purchase orders work.
+    
     """ 3.1 # Fill NA MLOR values """
     demand['shelf_life'] = demand['shelf_life'].fillna(demand.groupby('art_category')['shelf_life'].transform('mean'))
     demand['shelf_life'] = demand['shelf_life'].fillna(9)
@@ -101,7 +108,9 @@ import pandas as pd
 from datetime import timedelta
 
 def purchase_inventory(agg_demand, first_treshold_sl=9, second_treshold_sl=21, first_buffer=1.005, second_buffer=1.1, third_buffer=1.5):
+    
     # === 4. "Purchase", i.e. Create Inventory Quantities ===
+    
     """ 4.1 Create the inventory quantities based on the aggregated demand and shelf life. """
     agg_demand['quantity'] = 0
     for i, row in agg_demand.iterrows():
@@ -154,7 +163,9 @@ def purchase_inventory(agg_demand, first_treshold_sl=9, second_treshold_sl=21, f
     return inventory
 
 def load_purchases(inventory):
+    
     # === 5. Save Inventory to CSV and Load into DB ===
+    
     """ 5.1 Save CSV """
     inventory.to_csv(os.path.join(db_dir, "inventory_table.csv"), index=False)
 

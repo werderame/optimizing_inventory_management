@@ -20,7 +20,8 @@ DB_HOST=db.DB_HOST
 DB_PORT=db.DB_PORT
 
 
-def optimize_inventory(gap=0.05):
+def optimize_inventory(gap=0.05): # gap here is used to lower the accuracy and speed up the solution
+
     # === 1.DATASET SETUP ===
 
     """ 1.1 Load relevant data """
@@ -95,8 +96,8 @@ def optimize_inventory(gap=0.05):
         for iid in available_inv['inv_id'].unique() for d in days}
 
     # === 3. Objective Function ===
-    """ 3.1 Maximize the total number of recipes made """
 
+    """ 3.1 Maximize the total number of recipes made """
     model = LpProblem("Inventory_Usage_Optimization", LpMaximize)
     model += lpSum(x[r, d] for r in recipes for d in days)
 
@@ -108,20 +109,20 @@ def optimize_inventory(gap=0.05):
         for art in bom['art_code'].unique():
             total_required = []
             for r in recipes:
-                coeff_row = bom[(bom['recipe_id'] == r) & (bom['art_code'] == art)]
+                coeff_row = bom[(bom['recipe_id'] == r) & (bom['art_code'] == art)] # for each article of each recipe
                 if not coeff_row.empty:
                     coeff = coeff_row.iloc[0]['util_coeff']
-                    total_required.append(x[r, d] * coeff)
+                    total_required.append(x[r, d] * coeff) # no. of articles needed for this recipe on this day
 
             inv_ids = available_inv[
                 (available_inv['art_code'] == art) &
-                (available_inv['expiration_date'] >= day_dt)
+                (available_inv['expiration_date'] >= day_dt) # make sure there is inventory & it's still valid
             ]['inv_id'].tolist()
 
             if total_required and inv_ids:
                 model += lpSum(total_required) <= lpSum(y[iid, d] for iid in inv_ids), f"ingredient_usage_{art}_{d}"
 
-    # Total usage of each pallet ≤ remaining quantity before expiration
+    """ 4.2 Total usage of each pallet ≤ remaining quantity before expiration"""
     for iid in available_inv['inv_id'].unique():
         row = available_inv[available_inv['inv_id'] == iid].iloc[0]
         exp = row['expiration_date']
@@ -130,7 +131,7 @@ def optimize_inventory(gap=0.05):
         if valid_days:
             model += lpSum(y[iid, d] for d in valid_days) <= max_q, f"pallet_limit_{iid}"
 
-    # Daily production must not exceed (capacity - forecasted demand)
+    """ 4.3 Daily production must not exceed (capacity - forecasted demand)"""
     for d in days:
         demand_q = rdem.loc[rdem['demand_date'] == d, 'total_recipes'].values
         if demand_q.size > 0:
@@ -140,7 +141,8 @@ def optimize_inventory(gap=0.05):
             raise ValueError(f"No demand data found for day {d}")
         
         
-    # === SOLVE ===
+    # === 5. Solve ===
+
     solver = GLPK_CMD(
                     path="/opt/homebrew/bin/glpsol", 
                     msg=True,
@@ -148,15 +150,20 @@ def optimize_inventory(gap=0.05):
                     )
     model.solve(solver)
 
-    # Create dataframes for output
-    # Recipes
+    # === 6. Output ===
+
+    """ 6.1 Recipes"""
     solution = pd.DataFrame([
-        {"recipe_id": r, "demand_date": d, "demand_q": int(x[r, d].value())}
+        {
+            "recipe_id": r, 
+            "demand_date": d, 
+            "demand_q": int(x[r, d].value())
+        }
         for r in recipes for d in days
         if x[r, d].value() is not None and x[r, d].value() > 0
     ])
 
-    # Inventory
+    """ 6.2 Inventory """
     inv_usage = [
         {
             "day": d,
@@ -169,27 +176,28 @@ def optimize_inventory(gap=0.05):
     ]
     inv_usage_df = pd.DataFrame(inv_usage)
 
-    # Save to CSV
+    # === 7. Save to CSV ===
     solution = solution[['recipe_id', 'demand_q', 'demand_date']].sort_values(['demand_date', 'recipe_id'])
     solution.to_csv(os.path.join(model_dir, 'solver_solution.csv'), index=False)
     inv_usage_df.to_csv(os.path.join(model_dir, 'output_add_inventory.csv'), index=False)
     print('Solution found! Solver Solution and Inventory Usage CSVs available in the folder model_output.')
     return solution
 
-# === Push to Database ===
+# === 8. Push to Database ===
 def publish_solution(demand_suggested):
-    # Connect to DB and fetch ID
+
+    """ 8.1 Get unique IDs """
     try:
         conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
         cur = conn.cursor()
         cur.execute(f"SELECT demand_id FROM demand order by demand_id desc limit 1;")
-        demand_id = cur.fetchone()
+        demand_id = cur.fetchone() # get the last demand_id so to use unique ones
         cur.close()
         conn.close()
     except Exception as e:
         print(f"❌ Error fetching the demand ID: {e}")
 
-    # Assign ID to new rows - they must be unique and different from the demand_table
+    """ 8.2 Assign ID to new rows """
     next_id = demand_id[0] + 1
     demand_suggested['demand_id'] = 0
     for i, row in demand_suggested.iterrows():
@@ -198,19 +206,18 @@ def publish_solution(demand_suggested):
 
     demand_suggested = demand_suggested[['demand_id','recipe_id','demand_q','demand_date']]
 
-    # Publish Optimal Menu Production solution in a separate demand_suggested table in DB
+    """ 8.3 Publish Optimal Menu Production solution in a separate demand_suggested table in DB """
     try:
         conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
         cur = conn.cursor()
         import io
 
-        # Convert DataFrame to CSV buffer (no index, no header)
         buffer = io.StringIO()
-        demand_suggested.to_csv(buffer, index=False, header=False)
+        demand_suggested.to_csv(buffer, index=False, header=False) # Convert df to CSV buffer (no index, no header)
         buffer.seek(0)
 
         # Execute
-        cur.copy_from(buffer, 'demand_suggested', sep=',', columns=demand_suggested.columns)
+        cur.copy_from(buffer, 'demand_suggested', sep=',', columns=demand_suggested.columns) # populate a separate demand table
         conn.commit()
         cur.close()
         conn.close()
@@ -218,3 +225,5 @@ def publish_solution(demand_suggested):
 
     except Exception as e:
         print(f"❌ Error loading data in inventory: {e}")
+
+""" end of script"""

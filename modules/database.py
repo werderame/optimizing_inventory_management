@@ -7,6 +7,7 @@ from . import db_config as db
 import pandas as pd 
 
 # === DB Configuration ===
+
 DB_NAME=db.DB_NAME
 DB_USER=db.DB_USER
 DB_PASSWORD=db.DB_PASSWORD
@@ -14,11 +15,12 @@ DB_HOST=db.DB_HOST
 DB_PORT=db.DB_PORT
 
 # === DIR Config ===
+
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 db_dir = os.path.join(base_dir, "data", "db_ready")
 
+# Auxiliary manual local config 
 """ 
-other manual local config 
 DB_NAME = "moon_db"
 DB_USER = "your_user"
 DB_PASSWORD = "your_password"

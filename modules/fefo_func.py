@@ -8,20 +8,33 @@ import time
 rng = random.Random(42) # reproduce results
 
 # === DIR Config ===
+
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 output_dir = os.path.join(base_dir, "data", "model_output")
 
 
 def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
-    rng = rng or random
+    """
+    This function allocates valid non-expired inventory to customer demand 
+    and stores remaining inventory and remaining demand in separate lists.
+    remaining inventory that expires within the date window of cusomter demand is called "waste"
+    thus stored in a third list.
+    the parameter "num" allows to define an amount of randomness in the otherwise
+    perfect First-Expired-First-Out inventory allocation logic. Thus introducing operational errors
+    and inefficiencies in the allocation and helping to programmatically model inventory mismanagement.
+    """
 
-    """introduces the randomness in the inventory and allocates daily"""
+    # Initialize Output Containers
+    output_demand = []
+    output_inventory = []
+    output_waste = []
 
-    # Convert to list of dictionaries
+    # === 1. Prep Inputs ===
+
     inventory = inventory.to_dict(orient="records")
     demand = demand.to_dict(orient="records")
 
-    # Step 1: Convert dates and Sort Data
+    """ 1.1 Convert dates """
     for row in demand:
         row['demand_date'] = pd.to_datetime(row['demand_date'])
         row['end_demand_q'] = row['art_demand']
@@ -29,10 +42,12 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
     for row in inventory:
         row['expiration_date'] = pd.to_datetime(row['expiration_date'])
 
-    # Sort demand & inventory by date
+    """ 1.2 Sort Data  """ 
+    # important to adhere to FEFO
     demand = sorted(demand, key=lambda x: x['demand_date'])
     inventory = sorted(inventory, key=lambda x: x['expiration_date'])
 
+    """ 1.3 Simulate inefficient allocation """
     # move a percentage of the rows to a separate list and then re-insert it randomly in the inventory
     num_move = max(0, int(len(inventory) * num)) # num% or at least [choose] 
     to_move = random.sample(inventory, num_move) 
@@ -41,7 +56,7 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
     for i in range(len(to_move)):
         inventory.insert(random.randint(0,len(inventory)), to_move[i])
 
-    # Organize inventory by article
+    """ 1.4 Organize inventory by article """
     inventory_dict = {}
     for element in inventory:
         art = element['art_code']
@@ -51,12 +66,9 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
             inventory_dict[art] = []
         inventory_dict[art].append(element)
 
-    # Output Containers
-    output_demand = []
-    output_inventory = []
-    output_waste = []
 
-    # Step 2: Process Demand
+    # === 2. Process Demand ===
+
     for row in demand:
         demand_article = row['art_code']
         demand_qty = row['art_demand']
@@ -65,7 +77,7 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
         
         demand_fulfilled = 0
 
-        # Step 2.1: Remove expired inventory
+        """ 2.1 Remove expired inventory """
         if demand_article in inventory_dict:
             expired_batches = []
             for irow in inventory_dict[demand_article]:
@@ -83,7 +95,7 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
             # Append all expired inventory at this date
             output_waste.extend(expired_batches)
 
-        # Step 2.2: Fulfill Demand
+        """ 2.2 Fulfill Demand """
         if demand_article in inventory_dict:
             for irow in inventory_dict[demand_article]:
                 # SKIP expired batches (already recorded as waste)
@@ -120,7 +132,7 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
                         "last_processed_date": demand_date  # Last date this inventory was checked
                     })
 
-        # Step 2.3: Handle Unmet Demand
+        """ 2.3 Handle Unmet Demand """
         if remaining_demand_qty > 0:
             output_demand.append({
                 'art_code': demand_article,
@@ -132,7 +144,8 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
                 "expiration_date": irow['expiration_date']
             })
 
-    # Step 3: Process Remaining Inventory
+    # === 3. Process Remaining Inventory ===
+
     for art_key, inventory_list in inventory_dict.items():
         for irow in inventory_list:
             expired_batches = []
@@ -165,7 +178,7 @@ def fefo_daily (demand, inventory, num=0, output_names=None, rng=None):
                 "last_processed_date": demand_date  # Last date this inventory was checked
             })
 
-    # Display Results
+    # === 4. Prep Results ===
     output_demand = pd.DataFrame(output_demand)
     output_inventory = pd.DataFrame(output_inventory)
     output_waste = pd.DataFrame(output_waste)

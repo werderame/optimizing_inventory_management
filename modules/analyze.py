@@ -14,6 +14,7 @@ output_dir = os.path.join(base_dir, "data", "model_output")
 # === 1. FEFO Results ===
 def fefo_results(demand_input, waste_input, name=None, e=None):
     """Generates results for the FEFO model based on demand and waste inputs."""
+    
     results_list = [] 
 
     """ 1.1 Load the demand and waste data """
@@ -86,3 +87,5 @@ def opt_results(demand_input, waste_input):
     results_df_o = pd.DataFrame(results_list_o)
 
     return results_df_o
+
+""" end of script"""

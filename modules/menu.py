@@ -18,6 +18,7 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
     np.random.seed(42)
 
     # === 1. Load or Initialize Datasets ===
+
     """ 1.1 Load the BOM to work with the tags"""
     clean_bom = pd.read_csv(os.path.join(processed_dir, "clean_bom.csv"))
     tagged_recipes = clean_bom[['recipe_name', 'tags']]
@@ -40,6 +41,7 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
     ingredient_df = pd.DataFrame()
 
     # === 2. Use TAGS to generate a realistic demand ===
+
     fav_recipes = tagged_recipes[['recipe_id', 'tags']]
     fav_recipes['tags'] = fav_recipes['tags'].apply(ast.literal_eval) # evaluate the tag strings as lists
     fav_recipes = fav_recipes.explode('tags')
@@ -56,6 +58,7 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
     fav_recipes.head()
 
     # === 3. Calculate Total Recipe Sales ===
+
     sd = dt.strptime(start_date,'%Y-%m-%d')
 
     """ Generate a list of dates and total demand for each day using a random generator and min and max limits. """
@@ -69,6 +72,7 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
 
 
     # === 4. Distribute Sales to Daily Recipe demand ===
+
     """Create the Demand table using a random generator with a probability distribution based on favourite recipes.
     Loop through the overall demand and allocate half of the remaining demand to each recipe."""
     recipe_demand = []
@@ -88,6 +92,7 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
 
 
     # === 5. Return a stat on demand of recipes ===
+
     agg = demand_df.groupby('recipe_id')['demand_q'].sum().sort_values(ascending=False)
     total_demand = agg.sum()
     cumulative = agg.cumsum() / total_demand
@@ -96,7 +101,8 @@ def plan_menu(min_meals=950, max_meals=1050, weeks=6, start_date='2025-05-01'):
     print(f"Recipes making up top 80% of total demand: {top_80_count}")
     print(f"Recipes making up bottom 20% of total demand: {bottom_20_count}")
 
-    # === 6. Push the ouptupt to a DB READY directory
+    # === 6. Push the ouptupt to a DB READY directory ===
+
     """ 6.1 Dump the demand table to the db datasest """
     demand_df['demand_id'] = demand_df.index
     demand_df = demand_df[['demand_id', 'recipe_id', 'demand_q', 'demand_date']]
