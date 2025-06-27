@@ -26,6 +26,8 @@ The final outcome is both technical and business-facing: quantifying hidden loss
 
 A reproducible pipeline was developed to simulate realistic data:
 
+### 🧑‍🍳 Menu (Product) Development
+
 1. **Recipe scraping**: Recipes are extracted from HelloFresh, including names, tags, and ingredients.
 2. **Master data integration**: A manually curated article list maps real-world item codes, unit costs (optional), and shel file details.
 3. **Recipe BOMs**: Ingredient lists are matched with articles using fuzzy matching (Levenshtein distance) to generate full Bills of Materials.
@@ -34,7 +36,7 @@ A reproducible pipeline was developed to simulate realistic data:
    - **Daily volume**: 950–1050 kits/day (a balance between realistic volume and manageable dataset size).
    - **Tags as weights**: Recipes are not scored directly. Instead, tags (e.g., “Family Friendly”) influence category-level weightings, mimicking how real meal planning operates.
 
-### Inventory Creation
+### 🍱 Inventory Creation
 
 No real inventory is available. A synthetic one is built with these principles:
 
@@ -48,7 +50,7 @@ No real inventory is available. A synthetic one is built with these principles:
 
 These shelf life structures are central: perishable goods introduce risk into the supply chain. They shape purchase behavior, dictate inventory structure, and justify the need for FEFO logic.
 
-### Database Structure
+### 📁 Database Structure
 
 Data is stored in a local SQLite database. Key components:
 
@@ -59,9 +61,10 @@ Data is stored in a local SQLite database. Key components:
 ![ER Diagram](data/img/db_er.png)
 
 
-### FEFO Allocation Models
+### 📦 FEFO Allocation Models
 
-The function `fefo_daily()` simulates allocation using a defined error parameter. 'Error' mirrors a picking operation that _skips_ the shorter expiration date to withdrow a batch with longer shelf life. 
+The function `fefo_daily()` simulates valid non-expired inventory allocation to customer demand following the First-Expired-First-Out principle. Potential remaining inventory that expires is then marked as "waste". By using a defined error parameter one can programmatically model inventory mismanagement, introducing a certain amount of randomness in the FEFO inventory allocation logic.
+
 
 - **Inputs**: Inventory, demand, and a randomness value `e`
 - **Logic**:
@@ -70,11 +73,11 @@ The function `fefo_daily()` simulates allocation using a defined error parameter
 - **Outputs**:
   - Daily demand development
   - Daily inventory development
-  - Expired stock 
+  - Daily waste list  
 
 This models the operational inefficiencies caused by loose adherence to FEFO—emulating warehouse fatigue, human error, or tracking gaps.
 
-### Optimization Model
+### 🧩 Optimization Model
 
 A Mixed-Integer Linear Programming (MILP) model is implemented using `PuLP` and `GLPK`.
 
@@ -96,7 +99,7 @@ This project tests how small deviations from the FEFO principle impact performan
 2. **Imperfect FEFO** (`e = 0.03`): A small 3% deviation simulates operational noise.  
 3. **Optimized Usage**: Builds on Perfect FEFO by allocating surplus ingredients to produce additional recipes and reduce waste.
 
-### Summary of Results
+### 👌 Summary of Results
 
 | Scenario             | Waste Units | Shortages | Loss %     | Fulfilled Demand % |
 |----------------------|-------------|-----------|------------|-------------|
@@ -117,12 +120,12 @@ This project tests how small deviations from the FEFO principle impact performan
 <br>
 
 ![Cumulative Waste](data/img/cumulative_waste.png)
-<p style='color:grey; font-size:0.9em; padding:1em 5em'>This area chart illustrates cumulative waste across the production window of 6 weeks. The imperfect FEFO model generates significantly higher waste, climbing above 30K units, while the perfect FEFO reduces this sharply. The optimal model introduces a novel assumption—producing more than the original demand to minimize waste—and demonstrates further improvement. This suggests that inefficiencies in daily operations can have compounding effects over time.</p>
+<p style='color:grey; font-size:0.9em; padding:1em 5em'>This area chart illustrates cumulative loss across the production window of 6 weeks. The imperfect FEFO model generates significantly higher waste, climbing above 30K units, while the perfect FEFO reduces this sharply. The optimal model introduces a novel assumption—producing more than the original demand to minimize waste—and demonstrates further improvement. This suggests that inefficiencies in daily operations can have compounding effects over time.</p>
 
 <br>
 
 ![Waste by Category](data/img/category_waste.png)
-<p style='color:grey; font-size:0.9em; padding:1em 5em'>Two stacked bar charts compare waste composition across inventory categories:<br/> - By percentage: Fresh goods are greately improving throughout the scenarios, confirming the hypothesis that best inventory management practices are especially efficient on perishable goods.<br/> - By total units: Fresh ingredients dominate waste in the imperfect scenario. A much more even waste distribution across categories is achieved with the strict FEFO adherence and optimized models.</p>
+<p style='color:grey; font-size:0.9em; padding:1em 5em'>Two stacked bar charts compare loss composition across inventory categories:<br/> - By percentage: Fresh goods are greately improving throughout the scenarios, confirming the hypothesis that best inventory management practices are especially efficient on perishable goods.<br/> - By total units: The considerable drop in units loss between the imperfect and perfect FEFO allocation logic is a powerful sign that best inventory practices play a pivotal role in cost reduction strategies.</p>
 
 <br>
 
