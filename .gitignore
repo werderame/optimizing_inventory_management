@@ -25,6 +25,9 @@ data/model_output/
 data/processed/
 data/raw/
 
+# Key sensitive files
+*config*
+
 # Test or temporary files
 *test*.csv
 *tests*.csv
