@@ -26,7 +26,7 @@ data/processed/
 data/raw/
 
 # Key sensitive files
-*config*
+modules/db_config.py
 
 # Test or temporary files
 *test*.csv
